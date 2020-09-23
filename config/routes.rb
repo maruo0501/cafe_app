@@ -1,10 +1,13 @@
 Rails.application.routes.draw do
-  get 'posts/index'
-  get 'posts/show'
-  get 'posts/new'
-  get 'posts/edit'
-  devise_for :users
   root 'homes#top'
+  get '/posts/index', to:　'posts#index'
+  get '/posts/:id', to:　'posts#show'
+  get '/posts/:new', to:　'posts#new'
+  get '/posts/:id/edit', to:　'posts#edit'
+  post '/posts/create', to: 'posts#create'
+  post '/posts/:id/update', to: 'posts#update'
+  post '/posts/:id/destroy', to: 'posts#destroy'
+  devise_for :users
   # get 'homes/top'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
