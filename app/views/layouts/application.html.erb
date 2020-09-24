@@ -20,15 +20,20 @@
     <header>
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container font-weight-bold">
-          <%= link_to 'oshicafe@okayama', root_path %>
+          <%= link_to 'Oshicafe@okayama', root_path %>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-              <li class="nav-item active">
+              <li class="nav-item">
                 <%= link_to '投稿一覧', "/posts/index" %>
               </li>
+               <% if user_signed_in? %>
+                <li class="nav-item">
+                  <%= link_to '投稿', "/posts/new" %>
+                </li>
+              <% end %>
             </ul>
             <ul class="navbar-nav ml-auto">
                 <% if user_signed_in? %>
@@ -39,7 +44,7 @@
                     <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
                   </li>
                 <% else %>
-                  <li class="nav-item active text-body">
+                  <li class="nav-item text-body">
                     <%= link_to '新規登録', new_user_registration_path %>
                   </li>
                   <li class="nav-item">
@@ -53,9 +58,18 @@
           </div>
       </nav>
     </header>
+    
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
     <%= yield %>
+    
+　　 <main></main>
+    <footer class="footer mt-auto py-3">
+      <div class="container text-center">
+        <%# <p class="text-center text-secondary pt-3 pb-3 py-1"></p> %>
+        <span class="text-muted">Copyright © Oshicafe@okayama, All Rights Reserved.</span>
+      </div>
+    </footer>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

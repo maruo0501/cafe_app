@@ -4,6 +4,7 @@ class PostsController < ApplicationController
   end
 
   def show
+    @id = Post.find_by(id: params[:id])
   end
 
   def new
