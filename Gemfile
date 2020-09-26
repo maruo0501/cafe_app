@@ -34,7 +34,7 @@ gem 'devise'
 # gem 'jquery-rails'
 
 # エラーメッセージの日本語化
-gem 'rails-i18n'
+gem 'rails-i18n', '~> 6.0.0'
 
 
 group :development, :test do
