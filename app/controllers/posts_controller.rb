@@ -12,6 +12,8 @@ class PostsController < ApplicationController
   end
 
   def edit
+    @post = Post.find_by(id: params[:id])
+    
   end
 
   def create
@@ -28,6 +30,15 @@ class PostsController < ApplicationController
   end
 
   def update
+    @post = Post.find_by(id: params[:id])
+    @post.store_name = params[:store_name]
+    @post.content = params[:content]
+    if @post.save
+      flash[:notice] = "投稿を編集しました"
+      redirect_to("/posts/index")
+    else
+      render("posts/edit")
+    end
   end
 
   def destroy
