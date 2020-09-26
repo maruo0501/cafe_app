@@ -11,5 +11,9 @@
       <small class="text-muted">Last updated 3 mins ago</small>
     </div>
   </div>
+  <div class="post-menus text-right">
+    <%= link_to("編集", "/posts/#{@post.id}/edit") %>
+    <%= link_to("削除", "/posts/#{@post.id}/destroy", {method: "post"}) %>
+  </div>
 </div>
     
