@@ -1,2 +1,49 @@
-<h1>Posts#edit</h1>
-<p>Find me in app/views/posts/edit.html.erb</p>
+<h2 class="text-center mb-5">投稿編集</h2>
+
+<div class="main posts-new">
+  <div class="container">
+  　<%= form_tag("/posts/#{@post.id}/update") do %>
+    　 <div class="form-group">
+        <% @post.errors.full_messages.each do |message| %>
+          <div class="form-error">
+            <%= message %>
+          </div>
+        <% end %>
+        <label class="control-label">画像</label>
+        <input class="form-control mb-3"　name="image" type="file">
+        <input class="form-control mb-3"　name="image" type="file">
+        <input class="form-control mb-3"　name="image" type="file">
+      </div>
+      <div class="form-group">
+        <label class="control-label">店名</label>
+        <input class="form-control" type="text" name="store_name" value="<%= @post.store_name %>">
+      </div>
+      <div class="form-group">
+        <label class="control-label">wifiの有無</label>
+        <div class="radio">
+          <label><input type="radio" name="radio">有り</label>
+          <label><input type="radio" name="radio">無し</label>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label">電源の有無</label>
+        <div class="checkbox">
+          <label><input type="radio" name="radio">有り</label>
+          <label><input type="radio" name="radio">無し</label>
+        </div>
+      </div>
+      <div class="form-group mb-3">
+        <label class="control-label">クレジットカードの利用</label>
+        <div class="checkbox">
+          <label><input type="radio" name="radio">可</label>
+          <label><input type="radio" name="radio">不可</label>
+        </div>
+      </div>
+    　<div class="form-group">
+        <label for="content">おすすめポイント</label>
+        <textarea class="form-control mb-3" name="content"><%= @post.content %></textarea>
+        <input type="submit" value="保存">
+      </div>
+    <% end %>
+  </div>
+</div>
