@@ -2,8 +2,15 @@ ja:
   activerecord:
     models:
       post: 投稿
+      user: ユーザー
     attributes:
       post:
         store_name: 店名
         content: おすすめポイント
+      user:
+        name: ユーザー名
+        email: メールアドレス
+        password: パスワード
+        password_confirmation: パスワード確認
+        remember_me: 次回から自動的にログイン
         

@@ -20,7 +20,7 @@ class PostsController < ApplicationController
     @post = Post.new(
       content: params[:content],
       store_name: params[:store_name]
-      )
+    )
     if @post.save
       flash[:notice] = "投稿を作成しました"
       redirect_to("/posts/index")
@@ -46,5 +46,9 @@ class PostsController < ApplicationController
     @post.destroy
     flash[:notice] = "投稿を削除しました"
     redirect_to("/posts/index")
+  end
+
+  def post_params
+    params.require(:post).permit(:store_name, :content, {images: []})
   end
 end

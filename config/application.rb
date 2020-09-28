@@ -13,10 +13,14 @@ module CafeApp
 
     # エラーメッセージの日本語化
     config.i18n.default_locale = :ja
+    # 日本時刻で
+    config.time_zone = 'Asia/Tokyo'
     # config.i18n.load_path += Dir[Rails.root.join('config', '**', '*.{rb,yml}').to_s]
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
+    # Carrierwaveのエラーで追加
+    config.autoload_paths += Dir[Rails.root.join('app', 'uploaders')] 
   end
 end

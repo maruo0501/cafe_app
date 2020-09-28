@@ -2,7 +2,13 @@
 
 <div class="mx-auto" style="width: 200px;">
   <div class="card">
-    <img src="..." class="card-img-top" alt="...">
+    <!-- 画像表示 -->
+    <%# <%= form_for @post do |f| %> 
+      <%# <%= form.file_field :image %> 
+    <%# <% end %> 
+      <%# <% if @post.images.each do |image| %>
+        <%# <%= image_tag(image.url) %> %>
+      <%# <% end %> %> %>
     <div class="card-body">
       <h5 class="card-title"><%= @post.store_name %></h5>
       <p class="card-text"><%= @post.content %></p>
