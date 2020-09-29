@@ -2,21 +2,23 @@
 
 <div class="main posts-new">
   <div class="container">
-  　<%= form_tag("/posts/create") do %>
+  　<%= form_with url: posts_create_url, local: true do |f| %>
     　 <div class="form-group">
         <% @post.errors.full_messages.each do |message| %>
           <div class="form-error">
             <%= message %>
           </div>
         <% end %>
-        <label class="control-label">画像</label>
+        <%= f.label "画像" %><br><%= f.file_field :image %>
+        <%# <label class="control-label">画像</label>
         <input class="form-control mb-3"　name="image" type="file">
         <input class="form-control mb-3"　name="image" type="file">
-        <input class="form-control mb-3"　name="image" type="file">
+        <input class="form-control mb-3"　name="image" type="file"> %>
       </div>
       <div class="form-group">
-        <label class="control-label">店名</label>
-        <input class="form-control" type="text" name="store_name" value="<%= @post.store_name %>">
+        <%= f.label "店名" %><br><%= f.text_field :store_name %>
+        <%# <label class="control-label">店名</label>
+        <input class="form-control" type="text" name="store_name" value="<%= @post.store_name"> %> 
       </div>
       <div class="form-group">
         <label class="control-label">wifiの有無</label>
@@ -40,9 +42,13 @@
         </div>
       </div>
     　<div class="form-group">
-        <label for="content">おすすめポイント</label>
-        <textarea class="form-control mb-3" name="content"><%= @post.content %></textarea>
-        <input type="submit" value="投稿">
+        <%= f.label "おすすめポイント" %><br><%= f.text_area :content %>
+        <%# <label for="content">おすすめポイント</label> %>
+        <%# <textarea class="form-control mb-3" name="content"><%= @post.content</textarea> %> 
+        <%# <input type="submit" value="投稿"> %>
+      </div>
+      <div class="actions">
+        <%= f.submit "投稿"%>
       </div>
     <% end %>
   </div>
