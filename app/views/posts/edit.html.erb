@@ -11,7 +11,6 @@
         <% end %>
         <%= f.label "画像" %><br> 
         <% if @post.image.present? %>
-        <%# <%= image_tag @post.image.url if @post.image?<br>    %>
           <%= image_tag @post.image.url, :size =>'299x200' %><br> 
          <% else %>
           <%= image_tag 'default.png', :size =>'299x200' %><br> 
@@ -22,25 +21,25 @@
         <%= f.label "店名" %><br><%= f.text_field :store_name %>
       </div>
       <div class="form-group">
-        <label class="control-label">wifiの有無</label>
-        <div class="radio">
-          <label><input type="radio" name="radio">有り</label>
-          <label><input type="radio" name="radio">無し</label>
-        </div>
+        <%= f.label "wifiの有無" %><br>
+        <%= f.radio_button :wifi, :yes %>
+        <%= f.label :wifi, "有り", {value: :yes, style: "display: inline-block;"} %>
+        <%= f.radio_button :wifi, :no %>
+        <%= f.label :wifi, "無し", {value: :no, style: "display: inline-block;"} %>
       </div>
       <div class="form-group">
-        <label class="control-label">電源の有無</label>
-        <div class="checkbox">
-          <label><input type="radio" name="radio">有り</label>
-          <label><input type="radio" name="radio">無し</label>
-        </div>
+        <%= f.label "電源の有無" %><br>
+        <%= f.radio_button :power, :yes %>
+        <%= f.label :power, "有り", {value: :yes, style: "display: inline-block;"} %>
+        <%= f.radio_button :power, :no %>
+        <%= f.label :power, "無し", {value: :no, style: "display: inline-block;"} %>
       </div>
       <div class="form-group mb-3">
-        <label class="control-label">クレジットカードの利用</label>
-        <div class="checkbox">
-          <label><input type="radio" name="radio">可</label>
-          <label><input type="radio" name="radio">不可</label>
-        </div>
+        <%= f.label "クレジットカードの利用" %><br>
+        <%= f.radio_button :creditcard, :yes %>
+        <%= f.label :creditcard, "可", {value: :yes, style: "display: inline-block;"} %>
+        <%= f.radio_button :creditcard, :no %>
+        <%= f.label :creditcard, "不可", {value: :no, style: "display: inline-block;"} %>
       </div>
     　<div class="form-group">
         <%= f.label "おすすめポイント" %><br><%= f.text_area :content, value: @post.content %>
