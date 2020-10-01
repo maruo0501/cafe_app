@@ -11,6 +11,8 @@ require("channels")
 // require("jquery")
 // import 'bootstrap'
 // import '../src/application.scss'
+// 追記
+import '@fortawesome/fontawesome-free/js/all';
 
 
 // Uncomment to copy all static images under ../images to the output folder and reference
