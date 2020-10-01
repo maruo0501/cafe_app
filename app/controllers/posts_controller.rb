@@ -26,11 +26,7 @@ class PostsController < ApplicationController
   end
 
   def update
-    # @post = params[:store_name][:content][:image]
     @post = Post.find_by(id: params[:id])
-    # @post.store_name = params[:store_name]
-    # @post.content = params[:content]
-    # @post.image = params[:image]
     if @post.update(update_params)
       flash[:notice] = "投稿を編集しました"
       redirect_to("/posts/index")
@@ -48,9 +44,10 @@ class PostsController < ApplicationController
 
   # private
   def post_params
-    params.permit(:store_name, :content, :image, :authenticity_token, :commit)
+    params.permit(:store_name, :content, :image, :authenticity_token, :commit, :wifi, :power, :creditcard)
   end
   def update_params
-    params.require(:post).permit(:store_name, :content, :image, :_method, :authenticity_token, :commit, :id)
+    params.require(:post).permit(:store_name, :content, :image, :_method, :authenticity_token, :commit, :id, :wifi, :power, :creditcard)
   end
 end
+

@@ -3,49 +3,39 @@
 <div class="main posts-new">
   <div class="container">
   　<%= form_with url: posts_create_url, local: true do |f| %>
-    　 <div class="form-group">
+      <div class="form-group">
         <% @post.errors.full_messages.each do |message| %>
           <div class="form-error">
             <%= message %>
           </div>
         <% end %>
         <%= f.label "画像" %><br><%= f.file_field :image %>
-        <%# <label class="control-label">画像</label>
-        <input class="form-control mb-3"　name="image" type="file">
-        <input class="form-control mb-3"　name="image" type="file">
-        <input class="form-control mb-3"　name="image" type="file"> %>
-      </div>
       <div class="form-group">
         <%= f.label "店名" %><br><%= f.text_field :store_name %>
-        <%# <label class="control-label">店名</label>
-        <input class="form-control" type="text" name="store_name" value="<%= @post.store_name"> %> 
       </div>
       <div class="form-group">
-        <label class="control-label">wifiの有無</label>
-        <div class="radio">
-          <label><input type="radio" name="radio">有り</label>
-          <label><input type="radio" name="radio">無し</label>
-        </div>
+        <%= f.label "wifiの有無" %><br> 
+        <%= f.radio_button :wifi, :yes, checked: true %>
+        <%= f.label :wifi, "あり", {value: :yes, style: "display: inline-block;"} %>
+        <%= f.radio_button :wifi, :no %>
+        <%= f.label :wifi, "なし", {value: :no, style: "display: inline-block;"} %>
       </div>
       <div class="form-group">
-        <label class="control-label">電源の有無</label>
-        <div class="checkbox">
-          <label><input type="radio" name="radio">有り</label>
-          <label><input type="radio" name="radio">無し</label>
-        </div>
+        <%= f.label "電源の有無" %><br>
+        <%= f.radio_button :power, :yes, checked: true %>
+        <%= f.label :power, "あり", {value: :yes, style: "display: inline-block;"} %>
+        <%= f.radio_button :power, :no %>
+        <%= f.label :power, "なし", {value: :no, style: "display: inline-block;"} %>
       </div>
       <div class="form-group mb-3">
-        <label class="control-label">クレジットカードの利用</label>
-        <div class="checkbox">
-          <label><input type="radio" name="radio">可</label>
-          <label><input type="radio" name="radio">不可</label>
-        </div>
+        <%= f.label "クレジットカードの利用" %><br>
+        <%= f.radio_button :creditcard, :yes, checked: true %>
+        <%= f.label :creditcard, "可", {value: :yes, style: "display: inline-block;"} %>
+        <%= f.radio_button :creditcard, :no %>
+        <%= f.label :creditcard, "不可", {value: :no, style: "display: inline-block;"} %>
       </div>
     　<div class="form-group">
         <%= f.label "おすすめポイント" %><br><%= f.text_area :content %>
-        <%# <label for="content">おすすめポイント</label> %>
-        <%# <textarea class="form-control mb-3" name="content"><%= @post.content</textarea> %> 
-        <%# <input type="submit" value="投稿"> %>
       </div>
       <div class="actions">
         <%= f.submit "投稿"%>
