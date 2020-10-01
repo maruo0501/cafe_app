@@ -1,18 +1,25 @@
 <h2 class="text-center mb-5">投稿詳細</h2>
 
 <div class="mx-auto" style="width: 300px;">
-<%# style="width: 200px;" %>
   <div class="card">
-    <%# <img src="..." class="card-img-top" alt="..."> %>
-    <%# <%= image_tag (@post.image_url) if @post.image? %> 
     <% if @post.image.present? %>
       <%= image_tag (@post.image_url) %>
     <% else %>
-      <%# <img src="/assets/default.png" class="icon" alt="ユーザーアイコン"> %>
       <%= image_tag 'default.png', :size =>'299x200' %>
     <% end %>
     <div class="card-body">
       <h5 class="card-title"><%= @post.store_name %></h5>
+        <h6 class="card-subtitle mb-2 text-muted">
+          <% if @post.wifi == "yes" %>
+            <i class="fas fa-wifi">wifiあり</i>
+          <% end %>
+          <% if @post.power == "yes" %>
+            <i class="fas fa-plug">電源あり</i>
+          <% end %>
+          <% if @post.creditcard == "yes" %>
+            <i class="far fa-credit-card">クレジットカード利用可</i>
+          <% end %>
+        </h6>
       <p class="card-text"><%= @post.content %></p>
     </div>
     <div class="card-footer">

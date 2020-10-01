@@ -6,16 +6,6 @@ ja:
       post:
         store_name: 店名
         content: おすすめポイント
-    # enums:
-    #   post:
-    #     wifi:
-    #       yes: 有り
-    #       no: 無し
-    #     power:
-    #       yes: 有り
-    #       no: 無し
-    #     creditcard:
-    #       yes: 可
-    #       no: 不可
+    
 
         

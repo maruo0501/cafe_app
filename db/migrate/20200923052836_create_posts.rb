@@ -6,7 +6,7 @@ class CreatePosts < ActiveRecord::Migration[6.0]
       t.string :store_name
       t.integer :user_id
 
-      追記
+      # 追記
       t.integer :wifi, default: 0, null: false
       t.integer :power, default: 0, null: false
       t.integer :creditcard, default: 0, null: false
