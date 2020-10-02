@@ -11,13 +11,13 @@
       <h5 class="card-title"><%= @post.store_name %></h5>
         <h6 class="card-subtitle mb-2 text-muted">
           <% if @post.wifi == "yes" %>
-            <i class="fas fa-wifi">wifiあり</i>
+            <i class="fas fa-wifi"></i>wifiあり
           <% end %>
           <% if @post.power == "yes" %>
-            <i class="fas fa-plug">電源あり</i>
+            <i class="fas fa-plug"></i>電源あり
           <% end %>
           <% if @post.creditcard == "yes" %>
-            <i class="far fa-credit-card">クレジットカード利用可</i>
+            <i class="far fa-credit-card"></i>クレジットカード利用可
           <% end %>
         </h6>
       <p class="card-text"><%= @post.content %></p>
