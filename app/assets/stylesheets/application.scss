@@ -13,8 +13,7 @@
  *= require_tree .
  *= require_self
  */
-//  @import "font-awesome-sprockets"
-//  @import "font-awesome";
+
 //  font awesome読み込み
  @import '@fortawesome/fontawesome-free/scss/fontawesome';
  @import '@fortawesome/fontawesome-free/scss/solid';
