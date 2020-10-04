@@ -52,7 +52,14 @@
       </div>
       <div class="card-footer">
       <!-- 投稿したユーザー名表示 -->
-        <small class="float-right"><%= link_to(@user.name, "/users/#{@user.id}") %></small>
+        <div class="d-flex justify-content-end">
+          <% if @user.picture.present? %>
+          <img src=<%= @user.picture %> class="rounded-circle mr-1">
+          <% else %>
+            <i class="fas fa-user-circle fa-2x mr-1"></i>
+          <% end %>
+          <%= link_to(@user.name, "/users/#{@user.id}") %>
+        </div>
       </div>
     </div>
   <% end %>
