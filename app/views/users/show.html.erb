@@ -8,8 +8,8 @@
 <div class="mx-auto" style="width: 300px;">
   <div class="user text-center mb-5">
   <!-- ユーザー画像も追加 --> 
-    <% if @user.image.present? %>
-      <img src=<%= @user.image %> class="rounded-circle">
+    <% if @user.picture.present? %>
+      <img src=<%= @user.picture %> class="rounded-circle">
     <% else %>
       <i class="fas fa-user-circle fa-7x"></i>
     <% end %>

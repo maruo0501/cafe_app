@@ -8,5 +8,6 @@ class User < ApplicationRecord
 
   validates :password, {presence: true}
   # ユーザー画像追加
-  mount_uploader :image, ImageUploader
+  # mount_uploader :image, ImageUploader
+  mount_uploader :picture, PictureUploader
 end
