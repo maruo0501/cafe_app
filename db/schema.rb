@@ -35,12 +35,10 @@ ActiveRecord::Schema.define(version: 2020_10_04_052930) do
 
   create_table "posts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.text "content"
-    t.string "picture"
     t.string "store_name"
     t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "images"
     t.string "image"
     t.integer "wifi", default: 0, null: false
     t.integer "power", default: 0, null: false
