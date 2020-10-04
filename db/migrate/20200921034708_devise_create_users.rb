@@ -9,7 +9,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.0]
 
       # 追加
       t.string :name
-      t.string :picture
+      # t.string :picture
 
       ## Recoverable
       t.string   :reset_password_token
