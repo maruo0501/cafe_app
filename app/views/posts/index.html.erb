@@ -27,7 +27,7 @@
               <p class="card-text"><%= post.content %></p>
           </div>
           <div class="card-footer">
-          <!-- 投稿したユーザー名表示 -->
+          <!-- 投稿したユーザー名,ユーザー画像表示 -->
             <div class="d-flex justify-content-end">
               <% if post.user.image.present? %>
                 <img src=<%= post.user.image %> class="rounded-circle mr-1">
