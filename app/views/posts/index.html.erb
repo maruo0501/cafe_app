@@ -27,12 +27,21 @@
               <p class="card-text"><%= post.content %></p>
           </div>
           <div class="card-footer">
-            <small class="text-muted">Last updated 3 mins ago</small>
+          <!-- 投稿したユーザー名表示 -->
+            <div class="d-flex justify-content-end">
+              <% if post.user.image.present? %>
+                <img src=<%= post.user.image %> class="rounded-circle mr-1">
+              <% else %>
+                 <i class="fas fa-user-circle fa-2x mr-1"></i>
+              <% end %>
+              <%= link_to(post.user.name, "/users/#{post.user.id}") %>
+            </div>
           </div>
         </div>
       </div>
     <% end %>
   </div>
 </div>
+
 
 

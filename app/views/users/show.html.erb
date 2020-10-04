@@ -1,0 +1,59 @@
+<h2 class="text-center mb-5">
+  <% if user_signed_in? && @user == current_user %> 
+    マイページ
+  <% else %>
+    ユーザー詳細
+  <% end %>
+</h2>
+<div class="mx-auto" style="width: 300px;">
+  <div class="user text-center mb-5">
+  <!-- ユーザー画像も追加 --> 
+    <% if @user.image.present? %>
+      <img src=<%= @user.image %> class="rounded-circle">
+    <% else %>
+      <i class="fas fa-user-circle fa-7x"></i>
+    <% end %>
+    <h2><%= @user.name %></h2>
+    <% if user_signed_in? && @user == current_user %>
+      <%# <%= link_to "アカウント編集", edit_user_path(current_user) %> 
+      <p><%= @user.email %></p>
+      <%= link_to "アカウント編集", edit_user_registration_path %>
+    <% end %>
+  </div>
+  <div class="border mb-4" style="padding:3px;">
+    <div class="d-flex flex-row bd-highlight">
+      <div class="p-2 bd-highlight"><%= link_to("投稿", "/users/#{@user.id}") %></div>
+      <!-- お気に入り、コメントのリンクも追加 -->
+      <div class="p-2 bd-highlight">お気に入り</div>
+      <div class="p-2 bd-highlight">コメント</div>
+    </div>
+  </div>
+  <% @posts.each do |post| %>
+    <div class="card mb-4">
+      <% if post.image.present? %>
+        <%= link_to image_tag(post.image_url, :size =>'299x200'), "/posts/#{post.id}" %>
+      <% else %>
+        <%= link_to image_tag('default.png', :size =>'299x200'), "/posts/#{post.id}" %> 
+      <% end %>
+      <div class="card-body">
+        <h5 class="card-title"><%= link_to(post.store_name, "/posts/#{post.id}") %></h5>
+          <h6 class="card-subtitle mb-2 text-muted">
+            <% if post.wifi == "yes" %>
+              <i class="fas fa-wifi"></i>
+            <% end %>
+            <% if post.power == "yes" %>
+              <i class="fas fa-plug"></i>
+            <% end %>
+            <% if post.creditcard == "yes" %>
+              <i class="far fa-credit-card"></i>
+            <% end %>
+          </h6>
+        <p class="card-text"><%= post.content %></p>
+      </div>
+      <div class="card-footer">
+      <!-- 投稿したユーザー名表示 -->
+        <small class="float-right"><%= link_to(@user.name, "/users/#{@user.id}") %></small>
+      </div>
+    </div>
+  <% end %>
+</div>
