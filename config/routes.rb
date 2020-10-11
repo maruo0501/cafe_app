@@ -11,7 +11,13 @@ Rails.application.routes.draw do
   post "posts/create" => "posts#create"
   get "posts/:id/edit" => "posts#edit"
   post "posts/:id/destroy" => "posts#destroy"
-  devise_for :users
+  devise_for :users, :controllers => {
+    :registrations => 'users/registrations',
+    :sessions => 'users/sessions',
+   }
+  devise_scope :user do
+    post 'users/guest_sign_in', to: 'users/sessions#new_guest'
+  end
   patch "posts/:id/update" => "posts#update"
   resources :users, only: [:show, :edit, :update]
   get "/mypage" => "users#mypage"

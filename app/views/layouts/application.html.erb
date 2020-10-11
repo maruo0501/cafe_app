@@ -55,7 +55,7 @@
                     <%= link_to 'ログイン', new_user_session_path %>
                   </li>
                   <li class="nav-item">
-                    <%= link_to '簡単ログイン', new_user_session_path %>
+                    <%= link_to '簡単ログイン', users_guest_sign_in_path, method: :post %>
                   </li>
                 <% end %>
             </ul> 
