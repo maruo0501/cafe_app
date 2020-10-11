@@ -61,7 +61,7 @@ class PostsController < ApplicationController
     params.permit(:store_name, :content, :image, :authenticity_token, :commit, :wifi, :power, :creditcard)
   end
   def update_params
-    params.require(:post).permit(:store_name, :content, :image, :_method, :authenticity_token, :commit, :id, :wifi, :power, :creditcard)
+    params.require(:post).permit(:store_name, :content, :image, :commit, :wifi, :power, :creditcard)
   end
 end
 

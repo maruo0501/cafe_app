@@ -28,7 +28,7 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-              <li class="nav-item">
+              <li class="nav-item mr-3 ml-3">
                 <%= link_to '投稿一覧', "/posts/index" %>
               </li>
                <% if user_signed_in? %>
@@ -39,7 +39,7 @@
             </ul>
             <ul class="navbar-nav ml-auto">
                 <% if user_signed_in? %>
-                  <li class="nav-item">
+                  <li class="nav-item mr-3">
                     <%# <%= link_to 'マイページ', edit_user_registration_path %> 
                     <%# <%= link_to 'マイページ', mypage_path %> 
                     <%= link_to 'マイページ', "/users/#{current_user.id}" %>
@@ -48,10 +48,10 @@
                     <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
                   </li>
                 <% else %>
-                  <li class="nav-item text-body">
+                  <li class="nav-item text-body mr-3">
                     <%= link_to '新規登録', new_user_registration_path %>
                   </li>
-                  <li class="nav-item">
+                  <li class="nav-item mr-3">
                     <%= link_to 'ログイン', new_user_session_path %>
                   </li>
                   <li class="nav-item">

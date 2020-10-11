@@ -3,7 +3,7 @@
 <div class="mx-auto" style="width: 300px;">
   <div class="card">
     <% if @post.image.present? %>
-      <%= image_tag (@post.image_url) %>
+      <%= image_tag(@post.image_url, :size =>'299x200') %>
     <% else %>
       <%= image_tag 'default.png', :size =>'299x200' %>
     <% end %>
