@@ -28,7 +28,8 @@
       <div class="p-2 bd-highlight">コメント</div>
     </div>
   </div>
-  <% @posts.each do |post| %>
+  <% @favorite_posts.each do |post| %>
+  <%# <% @favorites.each do |favorite| %> 
     <div class="card mb-4">
       <% if post.image.present? %>
         <%= link_to image_tag(post.image_url, :size =>'299x200'), "/posts/#{post.id}" %>
@@ -73,13 +74,13 @@
             <p><span><i class="fas fa-heart heart_red"></i></span><%= post.favorites.count %></p> 
           <% end %>
           <!-- 投稿したユーザー名表示 -->
-          <%# <div class="d-flex justify-content-end"> %>
-            <% if @user.picture.present? %>
-            <img src=<%= @user.picture %> class="rounded-circle mr-1">
-            <% else %>
-              <i class="fas fa-user-circle fa-2x mr-1"></i>
-            <% end %>
-            <%= link_to(@user.name, "/users/#{@user.id}") %>
+        <%# <div class="d-flex justify-content-end"> %>
+          <% if @user.picture.present? %>
+          <img src=<%= @user.picture %> class="rounded-circle mr-1">
+          <% else %>
+            <i class="fas fa-user-circle fa-2x mr-1"></i>
+          <% end %>
+          <%= link_to(@user.name, "/users/#{@user.id}") %>
         </div>
       </div>
     </div>

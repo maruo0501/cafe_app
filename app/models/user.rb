@@ -5,6 +5,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   
   has_many :posts
+  has_many :favorites
+  has_many :favorite_posts, through: :favorites, source: :post 
 
   validates :password, {presence: true}
   # ユーザー画像追加

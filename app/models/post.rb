@@ -11,4 +11,9 @@ class Post < ApplicationRecord
   enum creditcard: { yes: 0, no: 1 }, _prefix: true
 
   belongs_to :user
+  has_many :favorites
+
+  def favorited_by?(user)
+    favorites.where(user_id: user.id).exists?
+  end
 end
