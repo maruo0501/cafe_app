@@ -11,6 +11,14 @@ class UsersController < ApplicationController
   def show
     @user = User.find_by(id: params[:id])
     @posts = @user.posts
+    @favorite_posts = @user.favorite_posts
+  end
+
+  def favorites
+    @user = User.find_by(id: params[:id])
+    @posts = @user.posts
+    @favorite_posts = @user.favorite_posts
+    # @favorites = Favorite.where(user_id: @user.id)
   end
 
 # 今のところ、アカウント編集はdeviseを使う

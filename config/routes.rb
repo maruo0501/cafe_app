@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get 'favorites/create' 
+  get 'favorites/destroy' 
+  get "users/:id/favorites" => "users#favorites"
   root 'homes#top'
   # resources :posts
   # resources :posts, only: [:index, :new, :show, :create, :edit, :update]
@@ -19,6 +22,10 @@ Rails.application.routes.draw do
     post 'users/guest_sign_in', to: 'users/sessions#new_guest'
   end
   patch "posts/:id/update" => "posts#update"
+
+  resources :posts do
+    resource :favorites, only: [:create, :destroy]
+  end
   resources :users, only: [:show, :edit, :update]
   get "/mypage" => "users#mypage"
 end

@@ -27,14 +27,36 @@
               <p class="card-text"><%= post.content %></p>
           </div>
           <div class="card-footer">
-          <!-- 投稿したユーザー名,ユーザー画像表示 -->
-            <div class="d-flex justify-content-end">
-              <% if post.user.picture.present? %>
-                <img src=<%= post.user.picture %> class="rounded-circle mr-1">
-              <% else %>
-                 <i class="fas fa-user-circle fa-2x mr-1"></i>
-              <% end %>
-              <%= link_to(post.user.name, "/users/#{post.user.id}") %>
+            <div class="d-flex justify-content-start">
+            
+              <!-- お気に入り数表示 -->
+                <% if user_signed_in? %>
+                  <% if post.favorited_by?(current_user) %> <!-- ログインしているユーザーがファボしたかどうかで分岐 -->
+                    <p>
+                      <%=link_to(post_favorites_path(post.id), method: :delete) do %>
+                        <span><i class="fas fa-heart heart_red"></i></span>
+                      <% end %>
+                      <%= post.favorites.count %>
+                    </p>
+                  <% else %>
+                    <p>
+                      <%=link_to(post_favorites_path(post.id), method: :post) do %>
+                        <span><i class="far fa-heart heart_red"></i></span>
+                      <% end %>
+                      <%= post.favorites.count %>
+                    </p>
+                  <% end %>
+                <% else %>
+                  <p><span><i class="fas fa-heart heart_red"></i></span><%= post.favorites.count %></p> 
+                <% end %>
+            <!-- 投稿したユーザー名,ユーザー画像表示 -->
+            <%# <div class="d-flex justify-content-end"> %>
+                <% if post.user.picture.present? %>
+                  <img src=<%= post.user.picture %> class="rounded-circle mr-1">
+                <% else %>
+                  <i class="fas fa-user-circle fa-2x mr-1"></i>
+                <% end %>
+                <%= link_to(post.user.name, "/users/#{post.user.id}") %>
             </div>
           </div>
         </div>
