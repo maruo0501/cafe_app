@@ -40,6 +40,9 @@ gem 'rails-i18n', '~> 6.0.0'
 gem 'carrierwave'
 gem 'mini_magick'
 
+# ページネーション
+gem 'kaminari'
+
 # font awesome
 # gem 'font-awesome-sass'
 
