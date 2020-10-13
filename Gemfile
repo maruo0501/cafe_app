@@ -35,6 +35,9 @@ gem 'devise'
 
 # エラーメッセージの日本語化
 gem 'rails-i18n', '~> 6.0.0'
+# deviseメッセージの日本語化
+gem 'devise-i18n'
+gem 'devise-i18n-views'
 
 # 画像アップロード
 gem 'carrierwave'
