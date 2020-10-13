@@ -27,21 +27,6 @@ class UsersController < ApplicationController
     @comment_posts = @user.comment_posts
   end
 
-# 今のところ、アカウント編集はdeviseを使う
-  # def edit
-  #   unless @user == current_user
-  #     redirect_to user_path(@user)
-  #   end
-  # end
-
-  # def update
-  #   if current_user.update(user_params)
-  #     redirect_to user_path(current_user)
-  #   else
-  #     redirect_to edit_user_path(current_user)
-  #   end
-  # end
-
   private
 
   def set_user
