@@ -17,7 +17,7 @@ default: &default
   username: <%= ENV['DB_USERNAME'] %>
   password: <%= ENV['DB_PASSWORD'] %>
   socket: /tmp/mysql.sock
-
+  # socket: /var/lib/mysql/mysql.sock
 development:
   <<: *default
   database: cafe_app_development
