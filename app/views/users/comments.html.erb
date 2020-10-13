@@ -7,7 +7,7 @@
 </h2>
 <div class="mx-auto" style="width: 300px;">
   <div class="user text-center mb-5">
-  <!-- ユーザー画像 --> 
+  <!-- ユーザー画像も追加 --> 
     <% if @user.picture.present? %>
       <img src=<%= @user.picture %> class="rounded-circle">
     <% else %>
@@ -28,7 +28,7 @@
       <div class="p-2 bd-highlight"><%= link_to("コメント", "/users/#{@user.id}/comments") %></div>
     </div>
   </div>
-  <% @posts.each do |post| %>
+  <% @comment_posts.each do |post| %>
     <div class="card mb-4">
       <% if post.image.present? %>
         <%= link_to image_tag(post.image_url, :size =>'299x200'), "/posts/#{post.id}" %>

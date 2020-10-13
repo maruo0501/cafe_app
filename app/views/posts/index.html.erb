@@ -5,58 +5,70 @@
     <% @posts.each do |post| %>
       <div class="col-md-4 mb-5">
         <div class="card h-100">
-        <!-- 画像からも詳細ページに飛べるようにする -->
+          <!-- 画像からも詳細ページに飛べる -->
           <% if post.image.present? %>
             <%= link_to image_tag(post.image_url, :size =>'288x200'), "/posts/#{post.id}" %>
           <% else %>
             <%= link_to image_tag('default.png', :size =>'288x200'), "/posts/#{post.id}" %>
           <% end %>
           <div class="card-body">
-              <h5 class="card-title"><%= link_to(post.store_name, "/posts/#{post.id}") %></h5>
-              <h6 class="card-subtitle mb-2 text-muted">
-                <% if post.wifi == "yes" %>
-                  <i class="fas fa-wifi"></i>
-                <% end %>
-                <% if post.power == "yes" %>
-                  <i class="fas fa-plug"></i>
-                <% end %>
-                <% if post.creditcard == "yes" %>
-                  <i class="far fa-credit-card"></i>
-                <% end %>
-              </h6>
-              <p class="card-text"><%= post.content %></p>
+            <h5 class="card-title"><%= link_to(post.store_name, "/posts/#{post.id}") %></h5>
+            <h6 class="card-subtitle mb-2 text-muted">
+              <% if post.wifi == "yes" %>
+                <i class="fas fa-wifi"></i>
+              <% end %>
+              <% if post.power == "yes" %>
+                <i class="fas fa-plug"></i>
+              <% end %>
+              <% if post.creditcard == "yes" %>
+                <i class="far fa-credit-card"></i>
+              <% end %>
+            </h6>
+            <p class="card-text"><%= post.content %></p>
           </div>
           <div class="card-footer">
-            <div class="d-flex justify-content-start">
-            
-              <!-- お気に入り数表示 -->
+            <div class="d-flex justify-content-between mx-2 mt-2">
+              <div class="row">
+                <!-- お気に入り数 -->
                 <% if user_signed_in? %>
                   <% if post.favorited_by?(current_user) %> <!-- ログインしているユーザーがファボしたかどうかで分岐 -->
                     <p>
                       <%=link_to(post_favorites_path(post.id), method: :delete) do %>
-                        <span><i class="fas fa-heart heart_red"></i></span>
+                        <span><i class="fas fa-heart" style="color:hotpink;"></i></span>
                       <% end %>
                       <%= post.favorites.count %>
                     </p>
                   <% else %>
                     <p>
                       <%=link_to(post_favorites_path(post.id), method: :post) do %>
-                        <span><i class="far fa-heart heart_red"></i></span>
+                        <span><i class="far fa-heart" style="color:hotpink;"></i></span>
                       <% end %>
                       <%= post.favorites.count %>
                     </p>
                   <% end %>
                 <% else %>
-                  <p><span><i class="fas fa-heart heart_red"></i></span><%= post.favorites.count %></p> 
+                  <p>
+                    <span><i class="fas fa-heart" style="color:hotpink;"></i></span><%= post.favorites.count %>
+                  </p> 
                 <% end %>
-            <!-- 投稿したユーザー名,ユーザー画像表示 -->
-            <%# <div class="d-flex justify-content-end"> %>
+                <!-- コメント数 -->
+                <p>
+                  <%= link_to("/posts/#{post.id}") do %>
+                    <span><i class="fas fa-comment ml-3" style="color:dodgerblue;"></i></span>
+                  <% end %>
+                  <%= post.comments.count %>
+                </p>
+              </div>
+              <div class="row">
+                <!-- 投稿したユーザーの画像 -->
                 <% if post.user.picture.present? %>
                   <img src=<%= post.user.picture %> class="rounded-circle mr-1">
                 <% else %>
                   <i class="fas fa-user-circle fa-2x mr-1"></i>
                 <% end %>
+                <!-- 投稿したユーザー名 -->
                 <%= link_to(post.user.name, "/users/#{post.user.id}") %>
+              </div>
             </div>
           </div>
         </div>

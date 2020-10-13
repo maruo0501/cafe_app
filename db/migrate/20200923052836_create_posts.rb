@@ -11,6 +11,8 @@ class CreatePosts < ActiveRecord::Migration[6.0]
       t.integer :power, default: 0, null: false
       t.integer :creditcard, default: 0, null: false
 
+      t.references :user, foreign_key: true
+
       t.timestamps
     end
   end

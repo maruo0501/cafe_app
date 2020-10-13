@@ -9,6 +9,9 @@ class PostsController < ApplicationController
     @post = Post.find_by(id: params[:id])
     # 追記
     @user = @post.user
+    @comments = @post.comments
+    @comment = @post.comments.build
+    # @comment = current_user.comments.new 
   end
 
   def new
