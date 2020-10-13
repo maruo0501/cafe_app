@@ -23,39 +23,49 @@
       <p class="card-text"><%= @post.content %></p>
     </div>
     <div class="card-footer">
-      <div class="d-flex justify-content-start">
-      <!-- お気に入り数表示 -->
-        <% if user_signed_in? %>
-          <% if @post.favorited_by?(current_user) %> <!-- ログインしているユーザーがファボしたかどうかで分岐 -->
-            <p>
-              <%=link_to(post_favorites_path(@post.id), method: :delete) do %>
-                <span><i class="fas fa-heart heart_red"></i></span>
-              <% end %>
-              <%= @post.favorites.count %>
-            </p>
+      <div class="d-flex justify-content-between mx-2 mt-2">
+        <div class="row">
+          <!-- お気に入り数表示 -->
+          <% if user_signed_in? %>
+            <% if @post.favorited_by?(current_user) %> <!-- ログインしているユーザーがファボしたかどうかで分岐 -->
+              <p>
+                <%=link_to(post_favorites_path(@post.id), method: :delete) do %>
+                  <span><i class="fas fa-heart" style="color:hotpink;"></i></span>
+                <% end %>
+                <%= @post.favorites.count %>
+              </p>
+            <% else %>
+              <p>
+                <%=link_to(post_favorites_path(@post.id), method: :post) do %>
+                  <span><i class="far fa-heart" style="color:hotpink;"></i></span>
+                <% end %>
+                <%= @post.favorites.count %>
+              </p>
+            <% end %>
           <% else %>
-            <p>
-              <%=link_to(post_favorites_path(@post.id), method: :post) do %>
-                <span><i class="far fa-heart heart_red"></i></span>
-              <% end %>
-              <%= @post.favorites.count %>
-            </p>
+            <p><span><i class="fas fa-heart" style="color:hotpink;"></i></span><%= @post.favorites.count %></p> 
           <% end %>
-        <% else %>
-          <p><span><i class="fas fa-heart heart_red"></i></span><%= @post.favorites.count %></p> 
-        <% end %>
-      <!-- 投稿したユーザー名表示 -->
-      <%# <div class="d-flex justify-content-end"> %>
-        <% if @user.picture.present? %>
-          <img src=<%= @user.picture %> class="rounded-circle mr-1">
-        <% else %>
-            <i class="fas fa-user-circle fa-2x mr-1"></i>
-        <% end %>
-        <%= link_to(@user.name, "/users/#{@user.id}") %>
+          <!-- コメント数 -->
+          <p>
+            <%= link_to("/posts/#{@post.id}") do %>
+              <span><i class="fas fa-comment ml-3" style="color:dodgerblue;"></i></span>
+            <% end %>
+            <%= @post.comments.count %>
+          </p>
+        </div>
+        <div class="row">
+          <!-- 投稿したユーザーの画像 -->
+          <% if @user.picture.present? %>
+            <img src=<%= @user.picture %> class="rounded-circle mr-1">
+          <% else %>
+              <i class="fas fa-user-circle fa-2x mr-1"></i>
+          <% end %>
+          <!-- 投稿したユーザー名 -->
+          <%= link_to(@user.name, "/users/#{@user.id}") %>
+        </div>
       </div>
     </div>
   </div>
-  <%# <% if @post.user_id == @current_user.id %> 
   <% if user_signed_in? && @user == current_user %>
     <div class="post-menus text-right">
       <%= link_to("編集", "/posts/#{@post.id}/edit") %>
@@ -63,4 +73,47 @@
     </div>
   <% end %>
 </div>
+<div class="mx-auto" style="width: 530px;">
+  <div class="comment-area ml-5 mr-5">
+    <!-- コメント投稿一覧表示 -->
+    <h4 class="mt-5">コメント一覧</h4>
+    <div class="media-list mt-4">
+      <% @comments.each do |comment| %> 
+        <% unless comment.user.blank? %>
+          <div class="shadow p-3 mb-3 bg-white rounded">
+            <div class="media-heading">
+              <% if comment.user.picture.present? %>
+                <img src=<%= comment.user.picture %> class ="rounded-circle mr-1" style="width: 40px; height: 40px;">
+              <% else %>
+                <i class="fas fa-user-circle fa-2x mr-1"></i>
+              <% end %>
+              <%= comment.user.name %>
+            </div>
+            <div class="media-body mt-2 ml-5">
+              <%= comment.comment_content %>
+            </div>
+            <div class="post-menus text-right">
+              <% if current_user == comment.user %>
+                <%= link_to "削除", post_comment_path(@post, comment), method: :delete %>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+
+    
+    <!-- コメント投稿 -->
+    <div class="comment-form">
+      <% if user_signed_in? %>
+        <h4 class="mt-5 mb-4">コメント投稿</h4>
+        <%= form_with(model:[@post, @comment], method: :post) do |f| %>
+          <%= f.text_area :comment_content, size: "51x3" %><br>
+          <%= f.submit '投　稿', class: "mt-3" %>
+      　<% end %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
     

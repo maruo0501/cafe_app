@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   get 'favorites/create' 
   get 'favorites/destroy' 
   get "users/:id/favorites" => "users#favorites"
+  get "users/:id/comments" => "users#comments"
   root 'homes#top'
   # resources :posts
   # resources :posts, only: [:index, :new, :show, :create, :edit, :update]
@@ -25,6 +26,7 @@ Rails.application.routes.draw do
 
   resources :posts do
     resource :favorites, only: [:create, :destroy]
+    resources :comments, only: [:create, :destroy]
   end
   resources :users, only: [:show, :edit, :update]
   get "/mypage" => "users#mypage"

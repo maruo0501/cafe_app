@@ -12,13 +12,19 @@ class UsersController < ApplicationController
     @user = User.find_by(id: params[:id])
     @posts = @user.posts
     @favorite_posts = @user.favorite_posts
+    @comment_posts = @user.comment_posts
   end
 
   def favorites
     @user = User.find_by(id: params[:id])
     @posts = @user.posts
     @favorite_posts = @user.favorite_posts
-    # @favorites = Favorite.where(user_id: @user.id)
+  end
+
+  def comments
+    @user = User.find_by(id: params[:id])
+    @posts = @user.posts
+    @comment_posts = @user.comment_posts
   end
 
 # 今のところ、アカウント編集はdeviseを使う
