@@ -3,12 +3,14 @@
 // a relevant structure within app/javascript and only use these pack files to reference
 // that code so it'll be compiled.
 
+// 追記（お気に入り機能の非同期）
+//= require jquery
+//= require rails-ujs
 require("@rails/ujs").start()
 require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
-// 追記
-// require("jquery")
+
 // import 'bootstrap'
 // import '../src/application.scss'
 // font awesome読み込み

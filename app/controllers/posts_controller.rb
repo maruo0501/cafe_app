@@ -57,7 +57,6 @@ class PostsController < ApplicationController
   end
 
   private
-
   def post_params
     params.permit(:store_name, :content, :image, :authenticity_token, :commit, :wifi, :power, :creditcard)
   end

@@ -31,7 +31,7 @@ gem 'bootsnap', '>= 1.4.2', require: false
 # ユーザー登録、ログイン
 gem 'devise'
 # gem 'bootstrap'
-# gem 'jquery-rails'
+gem 'jquery-rails'
 
 # エラーメッセージの日本語化
 gem 'rails-i18n', '~> 6.0.0'
