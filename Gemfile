@@ -42,7 +42,10 @@ gem 'devise-i18n-views'
 # 画像アップロード
 gem 'carrierwave'
 gem 'mini_magick'
-
+# AWSS3へ画像保存
+gem 'fog-aws'
+# S3へのアクセスキーを環境変数として保存させる
+gem 'dotenv-rails' 
 # ページネーション
 gem 'kaminari'
 
