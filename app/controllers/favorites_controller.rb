@@ -1,8 +1,12 @@
 class FavoritesController < ApplicationController
   def create
     favorite = current_user.favorites.build(post_id: params[:post_id])
-    favorite.save
-    redirect_to posts_path
+    if favorite.save!
+      redirect_to posts_path
+    else
+      flash.now[:danger] = "お気に入りに失敗しました"
+      redirect_to posts_path
+    end
   end
 
   def destroy

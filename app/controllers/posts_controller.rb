@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  # before_action :ensure_correct_user, {only: [:edit, :update, :destroy, :create]}
+  before_action :ensure_correct_user, {only: [:edit, :update, :destroy]}
 
   def index
     @posts = Post.page(params[:page]).per(6).order(created_at: :desc)
@@ -7,11 +7,9 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find_by(id: params[:id])
-    # 追記
     @user = @post.user
     @comments = @post.comments
     @comment = @post.comments.build
-    # @comment = current_user.comments.new 
   end
 
   def new
@@ -24,7 +22,6 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
-    # 追記
     @post.user_id = current_user.id
     if @post.save
       flash[:notice] = "投稿を作成しました"
@@ -51,10 +48,20 @@ class PostsController < ApplicationController
     redirect_to("/posts/index")
   end
 
-  # private
+  def ensure_correct_user
+    @post = Post.find_by(id: params[:id])
+    if @post.user_id != current_user.id
+      flash[:notice] = "権限がありません"
+      redirect_to("/posts/index")
+    end
+  end
+
+  private
+
   def post_params
     params.permit(:store_name, :content, :image, :authenticity_token, :commit, :wifi, :power, :creditcard)
   end
+
   def update_params
     params.require(:post).permit(:store_name, :content, :image, :commit, :wifi, :power, :creditcard)
   end
