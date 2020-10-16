@@ -75,4 +75,9 @@ describe User do
       expect(user.errors[:encrypted_password]).to include("は6文字以上で入力してください")
     end
   end
+  describe "user association" do
+    it {have_many :posts}
+    it {have_many :favorites}
+    it {have_many :comments}
+  end
 end

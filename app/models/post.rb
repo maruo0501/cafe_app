@@ -1,7 +1,8 @@
 class Post < ApplicationRecord
   attr_accessor :authenticity_token, :commit
-  validates :store_name, presence: true
-  validates :content, presence: true, length:{maximum: 140}
+
+  validates :store_name, presence: true, length: { maximum: 20 }
+  validates :content, presence: true, length: { maximum: 140 }
   validates :user_id, presence: true
   mount_uploader :image, ImageUploader
 
