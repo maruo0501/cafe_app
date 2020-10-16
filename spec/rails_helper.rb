@@ -68,4 +68,6 @@ RSpec.configure do |config|
   # 追記
   config.include Devise::Test::IntegrationHelpers, type: :request #sign_inヘルパーを提供
   config.include FactoryBot::Syntax::Methods
+
+  config.use_transactional_fixtures = true
 end

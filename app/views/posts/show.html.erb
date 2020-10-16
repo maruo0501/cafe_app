@@ -89,6 +89,11 @@
     <div class="comment-form">
       <% if user_signed_in? %>
         <h4 class="mt-5 mb-4">コメント投稿</h4>
+          <% @comment.errors.full_messages.each do |message| %>
+            <div class="form-error">
+              <%= message %>
+            </div>
+          <% end %>
         <%= form_with(model:[@post, @comment], method: :post) do |f| %>
           <%= f.text_area :comment_content, size: "51x3" %><br>
           <%= f.submit '投　稿', class: "mt-3" %>
