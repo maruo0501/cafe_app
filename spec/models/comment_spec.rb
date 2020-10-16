@@ -6,13 +6,13 @@ RSpec.describe Comment, type: :model do
     expect(comment).to be_valid
   end
 
-  it "comment_contentがない場合は登録できないこと" do
+  it "comment_contentがない場合は投稿できないこと" do
     comment = build(:comment, comment_content: nil)
     comment.valid?
     expect(comment.errors[:comment_content]).to include("を入力してください")
   end
 
-  it "user_idがない場合は登録できないこと" do
+  it "user_idがない場合は投稿できないこと" do
     comment = build(:comment, user_id: nil)
     expect(comment).not_to be_valid
   end
