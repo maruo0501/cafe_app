@@ -1,12 +1,13 @@
 class PostsController < ApplicationController
+  before_action :authenticate_user!, except: [:index, :show]
   before_action :ensure_correct_user, {only: [:edit, :update, :destroy]}
+  before_action :find_post, only: [:show, :edit, :update, :destroy]
 
   def index
     @posts = Post.page(params[:page]).per(6).order(created_at: :desc)
   end
 
   def show
-    @post = Post.find_by(id: params[:id])
     @user = @post.user
     @comments = @post.comments
     @comment = @post.comments.build
@@ -17,7 +18,6 @@ class PostsController < ApplicationController
   end
 
   def edit
-    @post = Post.find_by(id: params[:id])
   end
 
   def create
@@ -32,7 +32,6 @@ class PostsController < ApplicationController
   end
 
   def update
-    @post = Post.find_by(id: params[:id])
     if @post.update(update_params)
       flash[:notice] = "投稿を編集しました"
       redirect_to("/posts/index")
@@ -42,7 +41,6 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    @post = Post.find_by(id: params[:id])
     @post.destroy
     flash[:notice] = "投稿を削除しました"
     redirect_to("/posts/index")
@@ -63,6 +61,10 @@ class PostsController < ApplicationController
 
   def update_params
     params.require(:post).permit(:store_name, :content, :image, :commit, :wifi, :power, :creditcard)
+  end
+
+  def find_post
+    @post = Post.find_by(id: params[:id])
   end
 end
 
