@@ -1,21 +1,19 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show]
-  
+  before_action :find_user, only: [:show, :favorites, :comments]
+
   def show
-    @user = User.find_by(id: params[:id])
     @posts = @user.posts
     @favorite_posts = @user.favorite_posts
     @comment_posts = @user.comment_posts
   end
 
   def favorites
-    @user = User.find_by(id: params[:id])
     @posts = @user.posts
     @favorite_posts = @user.favorite_posts
   end
 
   def comments
-    @user = User.find_by(id: params[:id])
     @posts = @user.posts
     @comment_posts = @user.comment_posts
   end
@@ -24,5 +22,9 @@ class UsersController < ApplicationController
 
   def set_user
     @user = User.find(params[:id])
+  end
+
+  def find_user
+    @user = User.find_by(id: params[:id])
   end
 end
