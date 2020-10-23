@@ -60,13 +60,18 @@ RSpec.describe CommentsController, type: :controller do
       before do
         @user = create(:user)
         @post = create(:post)
-        @comment = create(:comment, user_id: @user.id, post_id: @post.id,)
+        @comment = create(:comment, user_id: @user.id, post_id: @post.id)
       end
 
       # コメントを削除できること
       it "deletes a comment" do
         sign_in @user
-        expect{delete :destroy, params: {id: @comment.id}}.to change(@user.comments, :count).by(-1)
+        # expect{delete :destroy, params: {id: @comment.id}}.to change(@user.comments, :count).by(-1)
+        # post :create, params: {user_id: @user.id, post_id: @post.id}
+        # expect{delete :destroy, params: {user_id: @user.id, post_id: @post.id}}.to change(@user.comments, :count).by(-1)
+        expect {
+          delete :destroy, params: {id: @comment.id}
+        }.to change(@user.comments, :count).by(-1)
       end
     end
 
@@ -89,7 +94,7 @@ RSpec.describe CommentsController, type: :controller do
       it "redirects to the dashboard" do
         sign_in @another_user
         delete :destroy, params: {id: @comment.id}
-        expect(response).to redirect_back(fallback_location: root_path)
+        expect(response).to redirect_to "/"
       end
     end
 

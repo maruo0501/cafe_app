@@ -4,21 +4,21 @@ RSpec.describe PostsController, type: :controller do
   before do
     @user = FactoryBot.create(:user)
     @another_user = FactoryBot.create(:another_user)
-    # @post = FactoryBot.create(:post)
     @post = @user.posts.create(
         store_name: "test store",
-        content: "tester"
-        )
+        content: "tester",
+        user_id: 1
+      ) 
   end
 
-  let(:params) do
-    { post: {
-        store_name: 'user',
-        content: 'password',
-        user_id: "1"
-      }
-    }
-  end
+  # let(:params) do
+  #   { post: {
+  #       store_name: 'user',
+  #       content: 'password',
+  #       user_id: "1"
+  #     }
+  #   }
+  # end
   
   describe "#index" do
     # 正常なレスポンスか？
@@ -85,11 +85,9 @@ RSpec.describe PostsController, type: :controller do
         sign_in @user 
         expect {
           post :create, params: {
-            post: {
               store_name: "test",
               content: "test",
               user_id: 1
-            }
           }
         }.to change(@user.posts, :count).by(1)
       end
@@ -97,12 +95,10 @@ RSpec.describe PostsController, type: :controller do
       it "redirects the page to /posts/index" do
         sign_in @user
         post :create, params: {
-            post: {
               store_name: "test",
               content: "test",
               user_id: 1
-            }
-          }
+        }
         expect(response).to redirect_to "/posts/index"
       end
     end
@@ -112,27 +108,18 @@ RSpec.describe PostsController, type: :controller do
         sign_in @user
         expect {
           post :create, params: {
-            post: {
-              # store_name: nil,
-              store_name: "test",
+              store_name: nil,
               content: "test",
               user_id: 1
-            }
           }
         }.to_not change(@user.posts, :count)
       end
       # 不正な投稿を作成しようとすると、再度投稿ページへリダイレクトされるか？
       it "redirects the page to /posts/new" do
         sign_in @user
-        post :create, params: {
-          post: {
-            # store_name: nil,
-            store_name: "test",
-            content: "test",
-            user_id: 1
-          }
-        }
-        expect(response).to redirect_to "/posts/new"
+        post :create, params: {store_name: nil, content: "test", user_id: 1}
+        # expect(response).to redirect_to "/posts/new"
+        expect(response).to redirect_to "/posts/create"
       end
     end
     context "as a guest user" do
@@ -220,8 +207,7 @@ RSpec.describe PostsController, type: :controller do
       # 不正な投稿を更新しようとすると、再度更新ページへリダイレクトされるか？
       it "redirects the page to /posts/post.id(1)/edit" do
         sign_in @user
-        # post_params = {store_name: nil}
-        post_params = {store_name: "test", content: nil}
+        post_params = {store_name: nil}
         patch :update, params: {id: @post.id, post: post_params}
         expect(response).to redirect_to "/posts/1/edit"
       end
