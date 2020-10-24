@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   root 'homes#top'
   get 'favorites/create' 
   get 'favorites/destroy' 
+  get 'comments/create' 
+  get 'comments/destroy' 
   get "users/:id/favorites" => "users#favorites"
   get "users/:id/comments" => "users#comments"
   post '/posts/:post_id/favorites' => "favorites#create"
@@ -29,5 +31,4 @@ Rails.application.routes.draw do
     resources :comments, only: [:create, :destroy]
   end
   resources :users, only: [:show, :edit, :update]
-  
 end
