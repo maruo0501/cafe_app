@@ -5,6 +5,7 @@ class UsersController < ApplicationController
   def show
     @favorite_posts = @user.favorite_posts
     @comment_posts = @user.comment_posts
+    
   end
 
   def favorites

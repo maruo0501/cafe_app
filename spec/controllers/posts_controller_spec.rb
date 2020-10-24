@@ -109,8 +109,7 @@ RSpec.describe PostsController, type: :controller do
       it "redirects the page to /posts/new" do
         sign_in @user
         post :create, params: {store_name: nil, content: "test", user_id: 1}
-        expect(response).to redirect_to("/posts/new")
-        # "/posts/new"
+        expect(response).to render_template :new
       end
     end
     context "as a guest user" do
@@ -200,8 +199,8 @@ RSpec.describe PostsController, type: :controller do
         sign_in @user
         post_params = {store_name: nil}
         patch :update, params: {id: @post.id, post: post_params}
-        expect(response).to redirect_to("/posts/edit")
-        # "/posts/1/edit"
+        # expect(response).to redirect_to("/posts/edit")
+        expect(response).to render_template :edit
       end
     end
     context "as an unauthorized user" do

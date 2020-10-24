@@ -12,11 +12,15 @@
   object-fit: cover;
 }
 
-// .heart_red {
-//   color:#e54747;
-//   // width: 30px;
-//   // height: 30px;
+// @media screen and (min-width: 641px) {
+// 	.card-image {
+// 		width: 288px;
+// 		height: 200px;
+// 	}
 // }
-// .comment_blue {
-//   color:#528fff;
+// @media screen and (max-width: 640px) {
+// 	.card-image  {
+// 		width: 288px;
+// 		height: 200px;
+// 	}
 // }

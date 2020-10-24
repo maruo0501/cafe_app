@@ -58,6 +58,8 @@ group :development, :test do
   # RSpec導入
   gem 'rspec-rails'
   gem 'factory_bot_rails'
+  # 追記
+  gem 'rails-controller-testing'
 end
 
 group :development do

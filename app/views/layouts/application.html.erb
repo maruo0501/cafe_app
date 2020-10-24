@@ -17,6 +17,7 @@
     <!-- Font Awesome読み込み -->
     <%# <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet"> %>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
   </head> 
 
   <body>
@@ -41,8 +42,6 @@
             <ul class="navbar-nav ml-auto">
                 <% if user_signed_in? %>
                   <li class="nav-item mr-3">
-                    <%# <%= link_to 'マイページ', edit_user_registration_path %> 
-                    <%# <%= link_to 'マイページ', mypage_path %> 
                     <%= link_to 'マイページ', "/users/#{current_user.id}" %>
                   </li>
                   <li class="nav-item">
@@ -64,10 +63,10 @@
       </nav>
     </header>
     
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+    <p class="notice"><%= notice %></p> 
+    <p class="alert"><%= alert %></p> 
     <%= yield %>
-    
+
 　　 <main></main>
     <footer class="footer mt-auto py-3">
       <div class="container text-center">
