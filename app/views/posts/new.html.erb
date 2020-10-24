@@ -36,6 +36,9 @@
       </div>
     　<div class="form-group">
         <%= f.label "おすすめポイント" %><br><%= f.text_area :content %>
+        <% if flash[:danger] %>
+          <%= flash[:danger] %>
+        <% end %>
       </div>
       <div class="actions">
         <%= f.submit "投稿"%>

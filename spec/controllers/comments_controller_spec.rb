@@ -1,5 +1,4 @@
 require 'rails_helper'
-# require 'comments_controller'
 
 RSpec.describe CommentsController, type: :controller do
   describe "POST #create" do
@@ -66,9 +65,6 @@ RSpec.describe CommentsController, type: :controller do
       # コメントを削除できること
       it "deletes a comment" do
         sign_in @user
-        # expect{delete :destroy, params: {id: @comment.id}}.to change(@user.comments, :count).by(-1)
-        # post :create, params: {user_id: @user.id, post_id: @post.id}
-        # expect{delete :destroy, params: {user_id: @user.id, post_id: @post.id}}.to change(@user.comments, :count).by(-1)
         expect {
           delete :destroy, params: {id: @comment.id}
         }.to change(@user.comments, :count).by(-1)

@@ -11,15 +11,6 @@ RSpec.describe PostsController, type: :controller do
       ) 
   end
 
-  # let(:params) do
-  #   { post: {
-  #       store_name: 'user',
-  #       content: 'password',
-  #       user_id: "1"
-  #     }
-  #   }
-  # end
-  
   describe "#index" do
     # 正常なレスポンスか？
     it "responds successfully" do
@@ -118,8 +109,8 @@ RSpec.describe PostsController, type: :controller do
       it "redirects the page to /posts/new" do
         sign_in @user
         post :create, params: {store_name: nil, content: "test", user_id: 1}
-        # expect(response).to redirect_to "/posts/new"
-        expect(response).to redirect_to "/posts/create"
+        expect(response).to redirect_to("/posts/new")
+        # "/posts/new"
       end
     end
     context "as a guest user" do
@@ -205,11 +196,12 @@ RSpec.describe PostsController, type: :controller do
         expect(@post.reload.store_name).to eq "test store"
       end
       # 不正な投稿を更新しようとすると、再度更新ページへリダイレクトされるか？
-      it "redirects the page to /posts/post.id(1)/edit" do
+      it "redirects the page to /posts/edit" do
         sign_in @user
         post_params = {store_name: nil}
         patch :update, params: {id: @post.id, post: post_params}
-        expect(response).to redirect_to "/posts/1/edit"
+        expect(response).to redirect_to("/posts/edit")
+        # "/posts/1/edit"
       end
     end
     context "as an unauthorized user" do

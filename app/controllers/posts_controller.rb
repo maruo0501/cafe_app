@@ -27,7 +27,8 @@ class PostsController < ApplicationController
       flash[:notice] = "投稿を作成しました"
       redirect_to("/posts/index")
     else
-      render("posts/new")
+      redirect_to("/posts/new")
+      flash[:danger] = "投稿に失敗しました"
     end
   end
 
@@ -36,7 +37,8 @@ class PostsController < ApplicationController
       flash[:notice] = "投稿を編集しました"
       redirect_to("/posts/index")
     else
-      render("posts/edit")
+      redirect_to("/posts/edit")
+      flash[:danger] = "編集に失敗しました"
     end
   end
 
