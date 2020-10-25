@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :favorite do
-    user_id {"1"}
-    post_id {"1"}
+    user_id { FactoryBot.create(:user).id }
+    post_id { FactoryBot.create(:post).id }
     association :user
     association :post
   end

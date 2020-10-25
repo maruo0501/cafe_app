@@ -19,9 +19,9 @@
             <div class="card h-100">
               <!-- 画像からも詳細ページに飛べる -->
               <% if post.image.present? %>
-                <%= link_to image_tag(post.image_url, :size =>'288x200'), "/posts/#{post.id}" %>
+                <%= link_to image_tag(post.image_url, class: 'img-fluid'), "/posts/#{post.id}" %>
               <% else %>
-                <%= link_to image_tag('default.png', :size =>'288x200'), "/posts/#{post.id}" %>
+                <%= link_to image_tag('default.png', class: 'img-fluid'), "/posts/#{post.id}" %>
               <% end %>
               <div class="card-body">
                 <h5 class="card-title"><%= link_to(post.store_name, "/posts/#{post.id}") %></h5>

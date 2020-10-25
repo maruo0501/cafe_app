@@ -1,0 +1,8 @@
+ja:
+  activerecord:
+    models:
+      post: 投稿
+    attributes:
+      post:
+        store_name: 店名
+        content: おすすめポイント
