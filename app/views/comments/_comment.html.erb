@@ -1,0 +1,24 @@
+<div class="media-list mt-4">
+      <% @comments.each do |comment| %> 
+        <% unless comment.user.blank? %>
+          <div class="shadow p-3 mb-3 bg-white rounded">
+            <div class="media-heading">
+              <% if comment.user.picture.present? %>
+                <img src=<%= comment.user.picture %> class ="rounded-circle mr-1" style="width: 40px; height: 40px;">
+              <% else %>
+                <i class="fas fa-user-circle fa-2x mr-1"></i>
+              <% end %>
+              <%= comment.user.name %>
+            </div>
+            <div class="media-body mt-2 ml-5">
+              <%= comment.comment_content %>
+            </div>
+            <div class="post-menus text-right">
+              <% if current_user == comment.user %>
+                <%= link_to "削除", post_comment_path(@post, comment), method: :delete, remote: true, data: { confirm: "本当に削除して良いですか？" } %>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
