@@ -15,7 +15,7 @@
         <% if @post.image.present? %>
           <%= image_tag @post.image.url, :size =>'299x200' %><br> 
          <% else %>
-          <%= image_tag 'default.png', :size =>'299x200' %><br> 
+          <%= image_tag 'default.png', :size =>'299x200' %><br>  
         <% end %>
         <%= f.file_field :image, value: @post.image %>
       </div>

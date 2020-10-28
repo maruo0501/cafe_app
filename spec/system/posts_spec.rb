@@ -5,7 +5,7 @@ RSpec.describe 'Posts', type: :system do
     context 'ログインしないと投稿できない' do
       it '投稿リンクなし' do
         visit root_path
-        Capybara.exact = true
+        Capybara.exact = true        
         expect(page).to have_no_link('投稿')
       end
     end
@@ -75,14 +75,9 @@ RSpec.describe 'Posts', type: :system do
     end
     context '投稿編集' do
       it '自分の投稿を編集' do
-        # @post = Post.create(user: @user, store_name: 'カフェ', content: 'コーヒーが美味しいです！')
-        # visit '/posts/index'
-        # expect {
-          fill_in 'store_name', with: 'カフェ'
-          fill_in 'content', with: 'コーヒーが美味しいです！'
-          click_button '投稿'
-        # }.to change{ Post.count }.by(1)
-        # visit '/posts/index'
+        fill_in 'store_name', with: 'カフェ'
+        fill_in 'content', with: 'コーヒーが美味しいです！'
+        click_button '投稿'
         expect(current_path).to eq '/posts/index'
         expect(page).to have_link('カフェ')
         click_link 'カフェ'
@@ -91,7 +86,7 @@ RSpec.describe 'Posts', type: :system do
 
         # expect(page).to have_link("#{Rails.root}/spec/default.png")
         # expect(page).to have_selector("img[src$='default.png']")
-        # expect(page).to have_selector "img[src$='default.png']"
+        expect(page).to have_selector "img[src$='default.png']"
         
         # store_nameに"カフェ"が入力されていることを検証する
         expect(page).to have_field 'post_store_name', with: 'カフェ'
@@ -102,7 +97,6 @@ RSpec.describe 'Posts', type: :system do
         # 店名を編集
         fill_in 'post_store_name', with: 'コーヒーカフェ'
         click_button '保存'
-        save_and_open_page
         expect(current_path).to eq '/posts/index'
         expect(page).to have_content '投稿を編集しました'
         expect(page).to have_content 'コーヒーカフェ'
