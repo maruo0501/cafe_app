@@ -5,7 +5,7 @@ RSpec.describe 'Posts', type: :system do
     context 'ログインしないと投稿できない' do
       it '投稿リンクなし' do
         visit root_path
-        Capybara.exact = true
+        Capybara.exact = true        
         expect(page).to have_no_link('投稿')
       end
     end
@@ -22,7 +22,7 @@ RSpec.describe 'Posts', type: :system do
 
   describe 'ログイン後' do
     before do
-      @user = User.create(name: 'yamada', email: 'yamada@example.com', password: 'password')
+      @user = create(:user)
       login_as(@user)
       visit root_path
       Capybara.exact = true
@@ -75,34 +75,21 @@ RSpec.describe 'Posts', type: :system do
     end
     context '投稿編集' do
       it '自分の投稿を編集' do
-        # @post = Post.create(user: @user, store_name: 'カフェ', content: 'コーヒーが美味しいです！')
-        # visit '/posts/index'
-        # expect {
-          fill_in 'store_name', with: 'カフェ'
-          fill_in 'content', with: 'コーヒーが美味しいです！'
-          click_button '投稿'
-        # }.to change{ Post.count }.by(1)
-        # visit '/posts/index'
+        fill_in 'store_name', with: 'カフェ'
+        fill_in 'content', with: 'コーヒーが美味しいです！'
+        click_button '投稿'
         expect(current_path).to eq '/posts/index'
         expect(page).to have_link('カフェ')
         click_link 'カフェ'
         expect(page).to have_link('編集')
         click_link '編集'
-
-        # expect(page).to have_link("#{Rails.root}/spec/default.png")
-        # expect(page).to have_selector("img[src$='default.png']")
-        # expect(page).to have_selector "img[src$='default.png']"
-        
         # store_nameに"カフェ"が入力されていることを検証する
         expect(page).to have_field 'post_store_name', with: 'カフェ'
         # contentに"コーヒーが美味しいです！"が入力されていることを検証する
         expect(page).to have_field 'post_content', with: 'コーヒーが美味しいです！'
-        # 画像を追加
-        # attach_file 'post_image', "#{Rails.root}/spec/cafe01.jpg"
         # 店名を編集
         fill_in 'post_store_name', with: 'コーヒーカフェ'
         click_button '保存'
-        save_and_open_page
         expect(current_path).to eq '/posts/index'
         expect(page).to have_content '投稿を編集しました'
         expect(page).to have_content 'コーヒーカフェ'
