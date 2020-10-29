@@ -15,7 +15,6 @@ RSpec.describe 'Comments', type: :system do
       end
     end
   end
-
   describe 'ログイン後' do
     describe 'userとしてログイン' do
       before do

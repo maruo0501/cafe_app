@@ -19,7 +19,6 @@ RSpec.describe 'Posts', type: :system do
       end
     end
   end
-
   describe 'ログイン後' do
     before do
       @user = create(:user)
@@ -28,7 +27,6 @@ RSpec.describe 'Posts', type: :system do
       Capybara.exact = true
       click_on '投稿'
     end
-
     context '投稿成功' do
       it 'フォームの入力値が正常' do
         expect(current_path).to eq "/posts/new"

@@ -5,7 +5,7 @@ RSpec.describe 'Users', type: :system do
     describe 'ログイン前' do
       let(:user) { create(:user) }
       let(:other_user) { create(:user) }
-
+      
       context '簡単ログインでログインできる' do
         it 'アカウント編集へはアクセスできない' do
           visit root_path
@@ -23,7 +23,6 @@ RSpec.describe 'Users', type: :system do
           expect(current_path).to eq root_path
         end
       end
-
       describe 'ユーザー新規登録' do
         context 'フォームの入力値が正常' do
           it 'ユーザーの新規作成が成功' do
@@ -87,7 +86,6 @@ RSpec.describe 'Users', type: :system do
         end
       end
     end
-
     describe 'ログイン' do
       before do
         @user = User.create!(name: 'test', email: 'test@example.com', password: 'password')
@@ -122,7 +120,6 @@ RSpec.describe 'Users', type: :system do
         end
       end
     end
-
     describe 'ログイン後' do
       before do
         @user = User.create(name: 'yamada', email: 'yamada@example.com', password: 'password')
