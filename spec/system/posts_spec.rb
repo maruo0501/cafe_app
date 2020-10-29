@@ -22,7 +22,7 @@ RSpec.describe 'Posts', type: :system do
 
   describe 'ログイン後' do
     before do
-      @user = User.create(name: 'yamada', email: 'yamada@example.com', password: 'password')
+      @user = create(:user)
       login_as(@user)
       visit root_path
       Capybara.exact = true
@@ -83,17 +83,10 @@ RSpec.describe 'Posts', type: :system do
         click_link 'カフェ'
         expect(page).to have_link('編集')
         click_link '編集'
-
-        # expect(page).to have_link("#{Rails.root}/spec/default.png")
-        # expect(page).to have_selector("img[src$='default.png']")
-        expect(page).to have_selector "img[src$='default.png']"
-        
         # store_nameに"カフェ"が入力されていることを検証する
         expect(page).to have_field 'post_store_name', with: 'カフェ'
         # contentに"コーヒーが美味しいです！"が入力されていることを検証する
         expect(page).to have_field 'post_content', with: 'コーヒーが美味しいです！'
-        # 画像を追加
-        # attach_file 'post_image', "#{Rails.root}/spec/cafe01.jpg"
         # 店名を編集
         fill_in 'post_store_name', with: 'コーヒーカフェ'
         click_button '保存'

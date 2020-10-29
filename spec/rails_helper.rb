@@ -8,6 +8,7 @@ require File.expand_path('../config/environment', __dir__)
 # Prevent database truncation if the environment is production
 abort("The Rails environment is running in production mode!") if Rails.env.production?
 require 'rspec/rails'
+# 追記
 # require 'capybara/poltergeist'
 # Add additional requires below this line. Rails is not loaded until this point!
 
@@ -69,8 +70,11 @@ RSpec.configure do |config|
   # 追記
   config.include Devise::Test::IntegrationHelpers, type: :request #sign_inヘルパーを提供
   config.include FactoryBot::Syntax::Methods
+  # 追記
   # Capybara.javascript_driver = :poltergeist
+
   config.include Devise::Test::ControllerHelpers, type: :controller
+  
   config.use_transactional_fixtures = true
   # config.use_transactional_fixtures = false
 
