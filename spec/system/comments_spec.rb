@@ -1,4 +1,5 @@
 require 'rails_helper'
+require 'resolv-replace'
 
 RSpec.describe 'Comments', type: :system do
   describe 'ログイン前' do
