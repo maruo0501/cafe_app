@@ -20,7 +20,6 @@ module CafeApp
     # the framework and any gems in your application.
     # herokuへのデプロイがうまくいかないので追記
     config.assets.initialize_on_precompile = false
-
     config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.yml').to_s]
   end
 end

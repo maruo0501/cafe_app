@@ -4,7 +4,6 @@ RSpec.describe UsersController, type: :controller do
   before do
     @user = FactoryBot.create(:user)
   end
-
   describe "#show" do
     it "responds successfully" do
       get :show, params: {id: @user.id}

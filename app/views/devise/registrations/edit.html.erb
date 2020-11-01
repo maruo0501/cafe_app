@@ -8,26 +8,21 @@
       <%= f.label :ユーザー名 %><br />
       <%= f.text_field :name, autofocus: true %>
     </div>
-
     <div class="field mb-3">
       <%= f.label :画像 %><br />
       <%= f.file_field :picture %>
     </div>
-
     <div class="field mb-3">
       <%= f.label :メールアドレス %><br />
       <%= f.email_field :email, autocomplete: "email" %>
     </div>
-
     <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
       <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
     <% end %>
-
     <div class="field mb-3">
       <%= f.label :現在のパスワード %><br />
       <%= f.password_field :current_password, autocomplete: "current-password" %>
     </div>
-
     <div class="field mb-3">
       <%= f.label :新しいパスワード %>
       <% if @minimum_password_length %>
@@ -35,12 +30,10 @@
       <% end %>
       <%= f.password_field :password, autocomplete: "new-password" %>
     </div>
-
     <div class="field mb-3">
       <%= f.label :新しいパスワード（確認用） %><br />
       <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
     </div>
-
     <div class="actions">
       <%= f.submit "保　存" %>
     </div>

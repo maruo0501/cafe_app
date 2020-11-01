@@ -1,24 +1,24 @@
 <% if user_signed_in? %>
-   <% if post.favorited_by?(current_user) %> <!-- ログインしているユーザーがファボしたかどうかで分岐 -->
-      <p>
-         <%=link_to(post_favorites_path(post.id), method: :delete, remote: true) do %>
-             <span><i class="fas fa-heart" style="color:hotpink;"></i></span>
-         <% end %>
-         <%= post.favorites.count %>
-       </p>
-   <% else %>
-       <p>
-          <%=link_to(post_favorites_path(post.id), method: :post, remote: true) do %>
-             <span><i class="far fa-heart" style="color:hotpink;"></i></span>
-          <% end %>
-          <%= post.favorites.count %>
-       </p>
-   <% end %>
- <% else %>
+  <% if post.favorited_by?(current_user) %> <!-- ログインしているユーザーがファボしたかどうかで分岐 -->
     <p>
-      <span><i class="fas fa-heart" style="color:hotpink;"></i></span><%= post.favorites.count %>
-   </p> 
- <% end %>
+      <%=link_to(post_favorites_path(post.id), method: :delete, remote: true) do %>
+        <span><i class="fas fa-heart" style="color:hotpink;"></i></span>
+      <% end %>
+      <%= post.favorites.count %>
+    </p>
+  <% else %>
+    <p>
+      <%=link_to(post_favorites_path(post.id), method: :post, remote: true) do %>
+        <span><i class="far fa-heart" style="color:hotpink;"></i></span>
+      <% end %>
+      <%= post.favorites.count %>
+    </p>
+  <% end %>
+<% else %>
+  <p>
+    <span><i class="fas fa-heart" style="color:hotpink;"></i></span><%= post.favorites.count %>
+  </p> 
+<% end %>
                       
                    
                   

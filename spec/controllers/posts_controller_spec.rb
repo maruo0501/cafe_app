@@ -10,7 +10,6 @@ RSpec.describe PostsController, type: :controller do
         user_id: 1
       ) 
   end
-
   describe "#index" do
     # 正常なレスポンスか？
     it "responds successfully" do
@@ -23,7 +22,6 @@ RSpec.describe PostsController, type: :controller do
       expect(response).to have_http_status "200"
     end
   end
-
   describe "#show" do
     it "responds successfully" do
       get :show, params: {id: @post.id}
@@ -34,7 +32,6 @@ RSpec.describe PostsController, type: :controller do
       expect(response).to have_http_status "200"
     end
   end
-
   describe "#new" do
     context "as an authorized user" do
       # 正常なレスポンスか？
@@ -68,7 +65,6 @@ RSpec.describe PostsController, type: :controller do
       end
     end
   end
-
   describe "#create" do
     context "as an authorized user" do
       # 正常に投稿を作成できるか？
@@ -125,7 +121,6 @@ RSpec.describe PostsController, type: :controller do
       end
     end
   end
-
   describe "#edit" do
     context "as an authorized user" do
       # 正常なレスポンスか？
@@ -168,7 +163,6 @@ RSpec.describe PostsController, type: :controller do
       end
     end
   end
-
   describe "#update" do
     context "as an authorized user" do
       # 正常に投稿を更新できるか？
@@ -240,7 +234,6 @@ RSpec.describe PostsController, type: :controller do
       end
     end
   end
-
   describe "#destroy" do
     context "as an authorized user" do
       # 正常に投稿を削除できるか？
