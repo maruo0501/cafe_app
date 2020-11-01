@@ -41,9 +41,13 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    @post.destroy
-    redirect_to("/posts/index")
-    flash[:notice] = "投稿を削除しました"
+    if @post.destroy
+      redirect_to("/posts/index")
+      flash[:notice] = "投稿を削除しました"
+    else
+      flash[:notice] = "投稿を削除できませんでした"
+      redirect_back(fallback_location: root_path)  
+    end
   end
 
   def ensure_correct_user

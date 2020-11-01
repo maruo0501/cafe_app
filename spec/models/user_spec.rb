@@ -2,13 +2,11 @@ require 'rails_helper'
 
 describe User do
   describe '#create' do
-
     # 入力されている場合のテスト 
     it "全ての項目の入力が存在すれば登録できること" do # テストしたいことの内容
       user = build(:user)  # 変数userにbuildメソッドを使用して、factory_botのダミーデータを代入
       expect(user).to be_valid # 変数userの情報で登録がされるかどうかのテストを実行
     end
-
     # null:false, presence: true のテスト 
     it "nameがない場合は登録できないこと" do # テストしたいことの内容
       user = build(:user, name: nil) # 変数userにbuildメソッドを使用して、factory_botのダミーデータを代入(今回の場合は意図的にnicknameの値をからに設定)
@@ -30,7 +28,6 @@ describe User do
       user.valid?
       expect(user.errors[:encrypted_password]).to include("を入力してください")
     end
-
     # email 一意性制約のテスト 
     it "重複したemailが存在する場合登録できないこと" do
       user = create(:user) # createメソッドを使用して変数userとデータベースにfactory_botのダミーデータを保存
@@ -38,7 +35,6 @@ describe User do
       another_user.valid? # another_userの「バリデーションにより保存ができない状態であるか」をテスト
       expect(another_user.errors[:email]).to include("はすでに存在します") # errorsメソッドを使用して、emailの「バリデーションにより保存ができない状態である場合なぜできないのか」を確認し、その原因のエラー文を記述
     end
-
     # email 小文字化のテスト
     it "emailが大文字の場合登録できないこと" do
       @user = FactoryBot.build(:user)
@@ -46,7 +42,6 @@ describe User do
       @user.save!
       expect(@user.reload.email).to eq "tanaka@example.com"
     end
-
     # email フォーマットのテスト
     context "無効なEメールを登録しようとした場合" do
       it "emailのvalidateが正しく機能していなければ登録できないこと" do
@@ -56,14 +51,12 @@ describe User do
         end
       end
     end
-
     # パスワードと確認用パスワードの一致テスト 
     it "passwordとencrypted_passwordが一致しない場合は登録できないこと" do
       user = build(:user, encrypted_password: "") # 意図的に確認用パスワードに値を空にする
       user.valid?
       expect(user.errors[:encrypted_password]).to include("を入力してください", "は6文字以上で入力してください")
     end
-
     # パスワードの文字数テスト 
     it "passwordが6文字以上であれば登録できること" do
       user = build(:user, password: "123456", encrypted_password: "123456") # buildメソッドを使用して6文字のパスワードを設定

@@ -6,19 +6,20 @@ class CommentsController < ApplicationController
     if @comment.save
       flash[:notice] = "コメントを作成しました"
       redirect_back(fallback_location: root_path)  #コメント送信後は、一つ前のページへリダイレクトさせる。
-      # render 'comment.js.erb'
     else
       flash[:notice] = "コメントを作成できませんでした"
       redirect_back(fallback_location: root_path)  #同上
     end
   end
-
   def destroy
     @comment = current_user.comments.find_by(id: params[:id])
-    @comment.destroy
-    flash[:notice] = 'コメントを削除しました。'
-    redirect_back(fallback_location: root_path)
-    # render 'comment.js.erb'
+    if @comment.destroy
+      flash[:notice] = 'コメントを削除しました。'
+      redirect_back(fallback_location: root_path)
+    else
+      flash[:notice] = "コメントを削除できませんでした"
+      redirect_back(fallback_location: root_path)  #同上
+    end
   end
 
   private
