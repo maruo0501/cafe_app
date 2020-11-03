@@ -315,7 +315,7 @@ DEPENDENCIES
   kaminari
   listen (~> 3.2)
   mini_magick
-  mysql2 (>= 0.4.4)
+  mysql2
   puma (~> 4.1)
   rails (~> 6.0.3, >= 6.0.3.3)
   rails-controller-testing
