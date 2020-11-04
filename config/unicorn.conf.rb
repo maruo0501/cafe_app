@@ -8,10 +8,6 @@
   # set config
   worker_processes  $worker
   working_directory $app_dir
-  # 追記ここから
-  app_path = File.expand_path('../../', __FILE__)
-  working_directory app_path
-　# ここまで
   stderr_path $std_log
   stdout_path $std_log
   timeout $timeout
