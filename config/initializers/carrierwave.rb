@@ -15,5 +15,6 @@ unless Rails.env.development? || Rails.env.test?
       # ENV['AWS_DEFAULT_REGION'],
       path_style: true
     }
+    config.asset_host = 'https://s3-ap-northeast-1.amazonaws.com/test-cafeapp'
   end
 end
