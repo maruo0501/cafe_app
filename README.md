@@ -1,7 +1,7 @@
 # cafe_appについて
 
 ## URL
-https://evening-escarpment-17134.herokuapp.com/
+http://54.168.142.204:3000/
 
 ## サービス概要
 - 岡山のお気に入りカフェを共有する投稿サイトです。
@@ -11,7 +11,8 @@ https://evening-escarpment-17134.herokuapp.com/
 - 言語: Ruby2.7.0
 - フレームワーク: Ruby on Rails6.0.3.3
 - DB: MySQL8.0.21
-- 本番環境での画像のアップロード先: AWS S3
+- インフラ： AWS EC2
+- 画像のアップロード先: AWS S3
 - バージョン管理: Git
 
 ## サービスの機能一覧
@@ -33,6 +34,7 @@ https://evening-escarpment-17134.herokuapp.com/
 
 ## 重視した点
 - RSpecを用いてテストを記述 
+- AWSへデプロイ
 - Deviseの使用 
 - 画像のアップロードにCarrierWaveを使用 
 - いいね機能、お気に入り機能の非同期通信
