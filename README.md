@@ -8,12 +8,24 @@ https://oshicafe.com/
 - ユーザーは投稿、お気に入り、コメントができます。
 
 ## 技術スタック
-- 言語: Ruby2.7.0
-- フレームワーク: Ruby on Rails6.0.3.3
-- DB: MySQL8.0.21
-- インフラ： AWS EC2
-- 画像のアップロード先: AWS S3
-- バージョン管理: Git
+### バックエンド
+- Ruby2.7.0
+- Ruby on Rails6.0.3.3
+- RSpec
+- MySQL8.0.21
+### フロントエンド
+- HTML / CSS
+- JavaScript / jQuery
+### インフラ
+- AWS
+ - ELB
+ - VPC
+ - EC2
+ - Route53
+ - S3
+ - ACM
+### バージョン管理
+- Git
 
 ## サービスの機能一覧
 - 投稿一覧、詳細機能
@@ -32,11 +44,15 @@ https://oshicafe.com/
 - ページネーション機能
 - 単体テスト、統合テスト(RSpecを使用)
 
-## 重視した点
-- RSpecを用いてテストを記述 
-- AWSへデプロイ
-- Deviseの使用 
-- 画像のアップロードにCarrierWaveを使用 
+## 使用Gem
+- CarrierWave
+- MiniMagick
+- Devise
+- Kaminari
+- Fog::Aws
+- Capybara
+
+## その他、使用技術・機能
 - いいね機能、お気に入り機能の非同期通信
 - プルリクを活用したGitHubフロー
 - SSL化
