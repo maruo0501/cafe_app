@@ -4,19 +4,15 @@
   <div class="container">
   　<%= form_with url: posts_create_url, local: true do |f| %>
       <div class="form-group">
-        <% @post.errors.full_messages.each do |message| %>
-          <div class="form-error">
-            <%= message %>
-          </div>
-        <% end %>
-      </div>
-      <div class="form-group">
         <%= f.label "画像" %><br>
         <%= f.file_field :image %>
       </div>
       <div class="form-group">
         <%= f.label "店名" %><br>
         <%= f.text_field :store_name, value: @post.store_name %>
+        <% if @post.errors.include?(:store_name) %>
+          <p style="color: red;"><%= @post.errors.full_messages_for(:store_name).first %>
+        <% end %>
       </div>
       <div class="form-group">
         <%= f.label "wifiの有無" %><br> 
@@ -41,6 +37,9 @@
       </div>
     　<div class="form-group">
         <%= f.label "おすすめポイント" %><br><%= f.text_area :content, value: @post.content %>
+        <% if @post.errors.include?(:content) %>
+          <p style="color: red;"><%= @post.errors.full_messages_for(:content).first %>
+        <% end %>
       </div>
       <div class="actions">
         <%= f.submit "投稿"%>
