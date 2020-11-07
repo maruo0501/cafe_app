@@ -66,12 +66,12 @@
           </div>
           <div class="row">
             <!-- 投稿したユーザー名表示 -->
-            <% if @user.picture.present? %>
-            <img src=<%= @user.picture %> class="rounded-circle mr-1">
+            <% if post.user.picture.present? %>
+            <img src=<%= post.user.picture %> class="rounded-circle mr-1">
             <% else %>
               <i class="fas fa-user-circle fa-2x mr-1"></i>
             <% end %>
-            <%= link_to(@user.name, "/users/#{@user.id}") %>
+            <%= link_to(post.user.name, "/users/#{post.user.id}") %>
           </div>
         </div>
       </div>
