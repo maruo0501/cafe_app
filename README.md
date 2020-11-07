@@ -17,8 +17,8 @@ https://oshicafe.com/
 - HTML / CSS
 - JavaScript / jQuery
 ### インフラ
-#### AWS
- - ELB
+- AWS
+    - ELB
  - VPC
  - EC2
  - Route53
