@@ -27,6 +27,7 @@ class PostsController < ApplicationController
       redirect_to("/posts/index")
       flash[:notice] = "投稿を作成しました"
     else
+      flash[:alert] = "投稿を作成できませんでした"
       render("posts/new")
     end
   end
@@ -36,6 +37,7 @@ class PostsController < ApplicationController
       redirect_to("/posts/index")
       flash[:notice] = "投稿を編集しました"
     else
+      flash[:alert] = "投稿を編集できませんでした"
       render("posts/edit")
     end
   end
@@ -45,7 +47,7 @@ class PostsController < ApplicationController
       redirect_to("/posts/index")
       flash[:notice] = "投稿を削除しました"
     else
-      flash[:notice] = "投稿を削除できませんでした"
+      flash[:alert] = "投稿を削除できませんでした"
       redirect_back(fallback_location: root_path)  
     end
   end
@@ -54,7 +56,7 @@ class PostsController < ApplicationController
     @post = Post.find_by(id: params[:id])
     if @post.user_id != current_user.id
       redirect_to("/posts/index")
-      flash[:notice] = "権限がありません"
+      flash[:alert] = "権限がありません"
     end
   end
 

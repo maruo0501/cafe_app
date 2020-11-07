@@ -7,7 +7,7 @@ class CommentsController < ApplicationController
       flash[:notice] = "コメントを作成しました"
       redirect_back(fallback_location: root_path)  #コメント送信後は、一つ前のページへリダイレクトさせる。
     else
-      flash[:notice] = "コメントを作成できませんでした"
+      flash[:alert] = "コメントを作成できませんでした"
       redirect_back(fallback_location: root_path)  #同上
     end
   end
@@ -17,7 +17,7 @@ class CommentsController < ApplicationController
       flash[:notice] = 'コメントを削除しました。'
       redirect_back(fallback_location: root_path)
     else
-      flash[:notice] = "コメントを削除できませんでした"
+      flash[:alert] = "コメントを削除できませんでした"
       redirect_back(fallback_location: root_path)  #同上
     end
   end
