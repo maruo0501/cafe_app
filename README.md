@@ -19,11 +19,11 @@ https://oshicafe.com/
 ### インフラ
 - AWS
     - ELB
- - VPC
- - EC2
- - Route53
- - S3
- - ACM
+    - VPC
+    - EC2
+    - Route53
+    - S3
+    - ACM
 ### バージョン管理
 - Git
 
