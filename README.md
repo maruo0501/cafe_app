@@ -1,4 +1,4 @@
-# cafe_appについて
+# Oshicafe@okayama
 
 ## URL
 https://oshicafe.com/
