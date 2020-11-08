@@ -65,7 +65,7 @@
       <%= render partial: 'comments/comment', locals: { comments: @comments } %>
     </div>
     <!-- コメント投稿（非同期） -->
-    <div class="comment-form w-80">
+    <div class="comment-form w-100">
       <% if user_signed_in? %>
         <h4 class="mt-5 mb-4">コメント投稿</h4>
           <% @comment.errors.full_messages.each do |message| %>
