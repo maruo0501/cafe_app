@@ -58,14 +58,14 @@
   <% end %>
 </div>
 <div class="mx-auto" style="width: 530px;">
-  <div class="comment-area ml-5 mr-5">
+  <div class="comment-area ml-5 mr-5 w-50">
     <!-- コメント一覧表示（非同期） -->
     <h4 class="mt-5">コメント一覧</h4>
     <div id="comments_area">
       <%= render partial: 'comments/comment', locals: { comments: @comments } %>
     </div>
     <!-- コメント投稿（非同期） -->
-    <div class="comment-form w-100">
+    <div class="comment-form">
       <% if user_signed_in? %>
         <h4 class="mt-5 mb-4">コメント投稿</h4>
           <% @comment.errors.full_messages.each do |message| %>
