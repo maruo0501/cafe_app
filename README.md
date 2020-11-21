@@ -1,5 +1,5 @@
 # Oshicafe@okayama
-自身の転職活動用に作成したポートフォリオアプリです。
+転職活動用に作成したポートフォリオアプリです。
 
 ## URL
 https://oshicafe.com/
