@@ -19,8 +19,8 @@ RSpec.describe Post, type: :model do
     post = build(:post, user_id: nil)
     expect(post).not_to be_valid
   end
-  it "store_nameが21文字以上であれば投稿できないこと" do
-    post = build(:post, store_name: "a" * 21)
+  it "store_nameが51文字以上であれば投稿できないこと" do
+    post = build(:post, store_name: "a" * 51)
     expect(post).not_to be_valid
   end
   it "contentは141文字以上であれば投稿できないこと" do

@@ -193,7 +193,6 @@ RSpec.describe PostsController, type: :controller do
         sign_in @user
         post_params = {store_name: nil}
         patch :update, params: {id: @post.id, post: post_params}
-        # expect(response).to redirect_to("/posts/edit")
         expect(response).to render_template :edit
       end
     end
