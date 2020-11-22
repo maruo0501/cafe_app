@@ -27,6 +27,6 @@
       end
     end
   end
-  after_fork do 
+  after_fork do |_server, _worker|
     defined?(ActiveRecord::Base) and ActiveRecord::Base.establish_connection
   end
