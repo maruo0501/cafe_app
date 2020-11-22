@@ -16,6 +16,5 @@ Style/HashTransformKeys:
   Enabled: true
 Style/HashTransformValues:
   Enabled: true
-
 Style/AsciiComments:
   Enabled: false
