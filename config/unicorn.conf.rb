@@ -22,8 +22,7 @@
     if old_pid != server.pid
       begin
         Process.kill "QUIT", File.read(old_pid).to_i
-      rescue Errno::ENOENT, Errno::ESRCH => e
-        logger.error e
+      rescue Errno::ENOENT, Errno::ESRCH 
       end
     end
   end
