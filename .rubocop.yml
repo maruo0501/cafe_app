@@ -9,6 +9,7 @@ AllCops:
     - "lib/**/*"
     - "Gemfile"
     - "node_modules/node-sass/src/**/*"
+    - "config/unicorn.conf.rb"
 
 Style/HashEachMethods:   
   Enabled: true
