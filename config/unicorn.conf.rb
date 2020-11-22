@@ -16,17 +16,17 @@
   # loading booster
   preload_app true
   # before starting processes
-  before_fork do |server, worker|
+  before_fork do |server, _worker|
     defined?(ActiveRecord::Base) and ActiveRecord::Base.connection.disconnect!
     old_pid = "#{server.config[:pid]}.oldbin"
     if old_pid != server.pid
       begin
         Process.kill "QUIT", File.read(old_pid).to_i
-      rescue Errno::ENOENT, Errno::ESRCH
+      rescue Errno::ENOENT, Errno::ESRCH => e
+        logger.error e
       end
     end
   end
-  # after finishing processes
-  after_fork do |server, worker|
+  after_fork do 
     defined?(ActiveRecord::Base) and ActiveRecord::Base.establish_connection
   end

@@ -1,14 +1,14 @@
 require 'rails_helper'
 require 'resolv-replace'
 
-RSpec.describe 'Comments', type: :system do
+RSpec.describe 'Comments', :type => :system do
   describe 'ログイン前' do
     before do
-      user = FactoryBot.create(:user)
-      post = FactoryBot.create(:post)
+      FactoryBot.create(:user)
+      FactoryBot.create(:post)
     end
     context 'ログインしないとコメントできない' do
-      it '投稿ボタンなし', js: true do
+      it '投稿ボタンなし', :js => true do
         visit root_path
         click_on 'test store'
         Capybara.exact = true    
@@ -20,32 +20,32 @@ RSpec.describe 'Comments', type: :system do
     describe 'userとしてログイン' do
       before do
         user = FactoryBot.create(:user)
-        post = FactoryBot.create(:post)
+        FactoryBot.create(:post)
         login_as(user)
         visit root_path(:user)
       end
       context 'コメント成功' do
-        it 'フォームの入力値が正常', js: true do
+        it 'フォームの入力値が正常', :js => true do
           click_on 'test store'
           expect(page).to have_button '投　稿'
-          fill_in "comment_comment_content", with: "コーヒーがおすすめです！"
+          fill_in "comment_comment_content", :with => "コーヒーがおすすめです！"
           click_button "投　稿"
           expect(page).to have_content 'コメントを作成しました'
           expect(page).to have_content 'コーヒーがおすすめです！'
         end
       end
       context 'コメント失敗' do
-        it 'フォームに未記入', js: true do
+        it 'フォームに未記入', :js => true do
           click_on 'test store'
-          fill_in "comment_comment_content", with: nil
+          fill_in "comment_comment_content", :with => nil
           click_button "投　稿"
           expect(page).to have_content 'コメントを作成できませんでした'
         end
       end
       context 'コメント削除' do
-        it '自分のコメントを削除（確認ダイアログでOKを選択）', js: true do
+        it '自分のコメントを削除（確認ダイアログでOKを選択）', :js => true do
           click_on 'test store'
-          fill_in "comment_comment_content", with: "コーヒーがおすすめです！"
+          fill_in "comment_comment_content", :with => "コーヒーがおすすめです！"
           click_button "投　稿"
           expect(page).to have_content 'コーヒーがおすすめです！'
           expect(page).to have_link '削除'
@@ -56,9 +56,9 @@ RSpec.describe 'Comments', type: :system do
           expect(page).to have_content 'コメントを削除しました。'
           expect(page).to have_no_content 'コーヒーがおすすめです！'
         end
-        it '自分のコメントを削除しない（確認ダイアログでキャンセルを選択）', js: true do
+        it '自分のコメントを削除しない（確認ダイアログでキャンセルを選択）', :js => true do
           click_on 'test store'
-          fill_in "comment_comment_content", with: "コーヒーがおすすめです！"
+          fill_in "comment_comment_content", :with => "コーヒーがおすすめです！"
           click_button "投　稿"
           expect(page).to have_content 'コーヒーがおすすめです！'
           expect(page).to have_link '削除'
@@ -72,16 +72,16 @@ RSpec.describe 'Comments', type: :system do
     end
     describe 'another_userとしてログイン' do
       before do
-        user = FactoryBot.create(:user)
-        post = FactoryBot.create(:post)
-        comment = FactoryBot.create(:comment)
+        FactoryBot.create(:user)
+        FactoryBot.create(:post)
+        FactoryBot.create(:comment)
       end
       context 'コメント削除' do
-        it '自分以外のユーザーのコメントは削除できない', js: true do
+        it '自分以外のユーザーのコメントは削除できない', :js => true do
           @user = create(:user)
           login_as(@user)
           visit root_path(@user)
-          click_on 'test store', match: :first
+          click_on 'test store', :match => :first
           expect(page).to have_content 'test comment'
           expect(page).to have_no_link '削除'
         end

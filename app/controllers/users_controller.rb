@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :favorites, :comments]
+  before_action :set_user, :only => [:show, :favorites, :comments]
   before_action :set_posts
 
   def show
@@ -17,7 +17,7 @@ class UsersController < ApplicationController
 
   private
   def set_user
-    @user = User.find_by(id: params[:id])
+    @user = User.find_by(:id => params[:id])
   end
 
   def set_posts

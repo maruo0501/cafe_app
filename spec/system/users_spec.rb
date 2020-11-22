@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'Users', type: :system do
+RSpec.describe 'Users', :type => :system do
   describe 'User CRUD' do
     describe 'ログイン前' do
       let(:user) { create(:user) }
@@ -29,13 +29,13 @@ RSpec.describe 'Users', type: :system do
             # ユーザー新規登録画面へ遷移
             visit new_user_registration_path
             # Nameテキストフィールドにtestと入力
-            fill_in 'user_name', with: 'test'
+            fill_in 'user_name', :with => 'test'
             # Emailテキストフィールドにtest@example.comと入力
-            fill_in 'user_email', with: 'test@example.com'
+            fill_in 'user_email', :with => 'test@example.com'
             # Passwordテキストフィールドにpasswordと入力
-            fill_in 'user_password', with: 'password'
+            fill_in 'user_password', :with => 'password'
             # Password confirmationテキストフィールドにpasswordと入力
-            fill_in 'user_password_confirmation', with: 'password'
+            fill_in 'user_password_confirmation', :with => 'password'
             # SignUpと記述のあるsubmitをクリックする
             click_button '登　録'
             # root_pathへ遷移することを期待する
@@ -49,13 +49,13 @@ RSpec.describe 'Users', type: :system do
             # ユーザー新規登録画面へ遷移
             visit new_user_registration_path
             # Nameテキストフィールドにtestと入力
-            fill_in 'user_name', with: 'test'
+            fill_in 'user_name', :with => 'test'
             # Emailテキストフィールドをnil状態にする
-            fill_in 'user_email', with: nil
+            fill_in 'user_email', :with => nil
             # Passwordテキストフィールドにpasswordと入力
-            fill_in 'user_password', with: 'password'
+            fill_in 'user_password', :with => 'password'
             # Password confirmationテキストフィールドにpasswordと入力
-            fill_in 'user_password_confirmation', with: 'password'
+            fill_in 'user_password_confirmation', :with => 'password'
             # SignUpと記述のあるsubmitをクリックする
             click_button '登　録'
             # '/users'へ遷移することを期待する
@@ -69,13 +69,13 @@ RSpec.describe 'Users', type: :system do
             # ユーザー新規登録画面へ遷移
             visit new_user_registration_path
             # Nameテキストフィールドにtestと入力
-            fill_in 'user_name', with: 'test'
+            fill_in 'user_name', :with => 'test'
             # Emailテキストフィールドにlet(:user)に定義したユーザーデータのemailを入力
-            fill_in 'user_email', with: user.email
+            fill_in 'user_email', :with => user.email
             # Passwordテキストフィールドにpasswordと入力
-            fill_in 'user_password', with: 'password'
+            fill_in 'user_password', :with => 'password'
             # Password confirmationテキストフィールドにpasswordと入力
-            fill_in 'user_password_confirmation', with: 'password'
+            fill_in 'user_password_confirmation', :with => 'password'
             # SignUpと記述のあるsubmitをクリックする
             click_button '登　録'
             # '/users'へ遷移することを期待する
@@ -88,14 +88,14 @@ RSpec.describe 'Users', type: :system do
     end
     describe 'ログイン' do
       before do
-        @user = User.create!(name: 'test', email: 'test@example.com', password: 'password')
+        @user = User.create!(:name => 'test', :email => 'test@example.com', :password => 'password')
       end
       context 'フォームの入力値が正常' do
         it 'ユーザーのログインが成功' do
           # ログイン画面へ遷移
           visit new_user_session_path
-          fill_in 'user_email', with: 'test@example.com'
-          fill_in 'user_password', with: 'password'
+          fill_in 'user_email', :with => 'test@example.com'
+          fill_in 'user_password', :with => 'password'
           click_button 'ログイン'
           # root_pathへ遷移することを期待する
           expect(current_path).to eq root_path
@@ -110,8 +110,8 @@ RSpec.describe 'Users', type: :system do
         it 'ログイン失敗' do
           # ログイン画面へ遷移
           visit new_user_session_path
-          fill_in 'user_email', with: nil
-          fill_in 'user_password', with: 'password'
+          fill_in 'user_email', :with => nil
+          fill_in 'user_password', :with => 'password'
           click_button 'ログイン'
           # /users/sign_inへ遷移することを期待する
           expect(current_path).to eq "/users/sign_in"
@@ -122,7 +122,7 @@ RSpec.describe 'Users', type: :system do
     end
     describe 'ログイン後' do
       before do
-        @user = User.create(name: 'yamada', email: 'yamada@example.com', password: 'password')
+        @user = User.create(:name => 'yamada', :email => 'yamada@example.com', :password => 'password')
         login_as(@user)
         visit edit_user_registration_path(@user)
       end
@@ -132,26 +132,26 @@ RSpec.describe 'Users', type: :system do
             expect(current_path).to eq edit_user_registration_path(@user)
             expect(page).to have_content('アカウント編集')
             # Nameに"yamada"が入力されていることを検証する
-            expect(page).to have_field 'user_name', with: 'yamada'
+            expect(page).to have_field 'user_name', :with => 'yamada'
             # Emailに"yamada@example.com"が入力されていることを検証する
-            expect(page).to have_field 'user_email', with: 'yamada@example.com'
+            expect(page).to have_field 'user_email', :with => 'yamada@example.com'
             # ユーザー画像追加
             attach_file 'user_picture', "#{Rails.root}/spec/cafe01.jpg"
-            fill_in 'user_current_password', with: 'password'
-            fill_in 'user_password', with: 'password'
-            fill_in 'user_password_confirmation', with: 'password'
+            fill_in 'user_current_password', :with => 'password'
+            fill_in 'user_password', :with => 'password'
+            fill_in 'user_password_confirmation', :with => 'password'
             click_button '保　存'
             expect(current_path).to eq root_path(@user)
             expect(page).to have_content 'アカウント情報を変更しました。'
           end
           it 'ユーザーの編集が成功(パスワード変更)' do
             # Nameに"test"が入力されていることを検証する
-            expect(page).to have_field 'user_name', with: 'yamada'
+            expect(page).to have_field 'user_name', :with => 'yamada'
             # Emailに"test@example.com"が入力されていることを検証する
-            expect(page).to have_field 'user_email', with: 'yamada@example.com'
-            fill_in 'user_current_password', with: 'password'
-            fill_in 'user_password', with: '123456'
-            fill_in 'user_password_confirmation', with: '123456'
+            expect(page).to have_field 'user_email', :with => 'yamada@example.com'
+            fill_in 'user_current_password', :with => 'password'
+            fill_in 'user_password', :with => '123456'
+            fill_in 'user_password_confirmation', :with => '123456'
             click_button '保　存'
             expect(current_path).to eq root_path(@user)
             expect(page).to have_content 'アカウント情報を変更しました。'
@@ -159,11 +159,11 @@ RSpec.describe 'Users', type: :system do
         end
         context 'パスワードが一致しない' do
           it 'ユーザーの編集が失敗' do
-            expect(page).to have_field 'user_name', with: 'yamada'
-            expect(page).to have_field 'user_email', with: 'yamada@example.com'
-            fill_in 'user_current_password', with: 'password'
-            fill_in 'user_password', with: '123456'
-            fill_in 'user_password_confirmation', with: '23456'
+            expect(page).to have_field 'user_name', :with => 'yamada'
+            expect(page).to have_field 'user_email', :with => 'yamada@example.com'
+            fill_in 'user_current_password', :with => 'password'
+            fill_in 'user_password', :with => '123456'
+            fill_in 'user_password_confirmation', :with => '23456'
             click_button '保　存'
             expect(current_path).to eq '/users'
             expect(page).to have_content "確認用パスワードとパスワードの入力が一致しません"

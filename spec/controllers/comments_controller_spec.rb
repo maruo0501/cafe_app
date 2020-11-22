@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe CommentsController, type: :controller do
+RSpec.describe CommentsController, :type => :controller do
   describe "POST #create" do
     # ログイン済みのユーザーとして
     context "as an authenticated user" do
@@ -8,29 +8,29 @@ RSpec.describe CommentsController, type: :controller do
         @user = create(:user)
         @post = create(:post)
       end
-       # 有効な属性値の場合
-       context "with valid attributes" do
+      # 有効な属性値の場合
+      context "with valid attributes" do
         # コメントを追加できること
         it "adds a comment" do
-          comment_params = attributes_for(:comment, user_id: @user.id)
+          comment_params = attributes_for(:comment, :user_id => @user.id)
           sign_in @user
-          expect {post :create, params: {post_id: @post.id, comment: comment_params}}.to change(@user.comments, :count).by(1)
+          expect { post :create, :params => { :post_id => @post.id, :comment => comment_params } }.to change(@user.comments, :count).by(1)
         end
         # 他のユーザーに成り済ましてコメントできないこと
         it "does not add a comment as an other user" do
           other_user = create(:user)
-          comment_params = attributes_for(:comment, user_id: other_user.id)
+          comment_params = attributes_for(:comment, :user_id => other_user.id)
           sign_in @user
-          expect {post :create, params: {post_id: @post.id, comment: comment_params}}.to_not change(other_user.comments, :count)
+          expect { post :create, :params => { :post_id => @post.id, :comment => comment_params } }.to_not change(other_user.comments, :count)
         end
       end
       # 無効な属性値の場合
       context "with invalid attributes" do
         # コメントを追加できないこと
         it "does not add a comment" do
-          comment_params = attributes_for(:comment, comment_content: nil, user_id: @user.id)
+          comment_params = attributes_for(:comment, :comment_content => nil, :user_id => @user.id)
           sign_in @user
-          expect{post :create, params: {post_id: @post.id, comment: comment_params}}.to_not change(@user.comments, :count)
+          expect { post :create, :params => { :post_id => @post.id, :comment => comment_params } }.to_not change(@user.comments, :count)
         end
       end
     end
@@ -42,8 +42,8 @@ RSpec.describe CommentsController, type: :controller do
       end
       # 成り済まし投稿しようとするとエラーが発生すること
       it "does not add a comment and gets an error" do
-        comment_params = attributes_for(:comment, user_id: @user.id)
-        expect {post :create, params: {post_id: @post.id, comment: comment_params}}.to raise_error NameError
+        comment_params = attributes_for(:comment, :user_id => @user.id)
+        expect { post :create, :params => { :post_id => @post.id, :comment => comment_params } }.to raise_error NameError
       end
     end
   end
@@ -53,13 +53,13 @@ RSpec.describe CommentsController, type: :controller do
       before do
         @user = create(:user)
         @post = create(:post)
-        @comment = create(:comment, user_id: @user.id, post_id: @post.id)
+        @comment = create(:comment, :user_id => @user.id, :post_id => @post.id)
       end
       # コメントを削除できること
       it "deletes a comment" do
         sign_in @user
         expect {
-          delete :destroy, params: {id: @comment.id}
+          delete :destroy, :params => { :id => @comment.id }
         }.to change(@user.comments, :count).by(-1)
       end
     end
@@ -69,30 +69,30 @@ RSpec.describe CommentsController, type: :controller do
         @user = create(:user)
         @another_user = FactoryBot.create(:another_user)
         @post = create(:post)
-        @comment = create(:comment, user_id: @another_user.id, post_id: @post.id)
+        @comment = create(:comment, :user_id => @another_user.id, :post_id => @post.id)
       end
       # コメントを削除できないこと
       it "does not delete a comment" do
         sign_in @another_user
-        expect{delete :destroy, params: {id: @comment.id}}.to_not change(@user.comments, :count)
+        expect { delete :destroy, :params => { :id => @comment.id } }.to_not change(@user.comments, :count)
       end
       # ホーム画面にリダイレクトすること
       it "redirects to the dashboard" do
         sign_in @another_user
-        delete :destroy, params: {id: @comment.id}
+        delete :destroy, :params => { :id => @comment.id }
         expect(response).to redirect_to "/"
       end
     end
-     # ログインしてないゲストユーザーとして
-     context "as an guest user" do
+    # ログインしてないゲストユーザーとして
+    context "as an guest user" do
       before do
         @user = create(:user)
         @post = create(:post)
-        @comment = create(:comment, user_id: @user.id, post_id: @post.id)
+        @comment = create(:comment, :user_id => @user.id, :post_id => @post.id)
       end
-       # 成り済まし削除しようとするとエラーが発生すること
-       it "does not delete a comment and gets an error" do
-        expect {delete :destroy, params: {id: @comment.id}}.to raise_error NameError
+      # 成り済まし削除しようとするとエラーが発生すること
+      it "does not delete a comment and gets an error" do
+        expect { delete :destroy, :params => { :id => @comment.id } }.to raise_error NameError
       end
     end
   end

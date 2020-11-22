@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe HomesController, type: :controller do
+RSpec.describe HomesController, :type => :controller do
   describe "GET #top" do
     it "returns http success" do
       get :top
