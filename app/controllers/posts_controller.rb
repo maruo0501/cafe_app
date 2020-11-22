@@ -1,10 +1,10 @@
 class PostsController < ApplicationController
-  before_action :authenticate_user!, except: [:index, :show]
-  before_action :ensure_correct_user, {only: [:edit, :update, :destroy]}
-  before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, :except => [:index, :show]
+  before_action :ensure_correct_user, { :only => [:edit, :update, :destroy] }
+  before_action :set_post, :only => [:show, :edit, :update, :destroy]
 
   def index
-    @posts = Post.page(params[:page]).per(6).order(created_at: :desc)
+    @posts = Post.page(params[:page]).per(6).order(:created_at => :desc)
   end
 
   def show
@@ -48,12 +48,12 @@ class PostsController < ApplicationController
       flash[:notice] = "投稿を削除しました"
     else
       flash[:alert] = "投稿を削除できませんでした"
-      redirect_back(fallback_location: root_path)  
+      redirect_back(:fallback_location => root_path)  
     end
   end
 
   def ensure_correct_user
-    @post = Post.find_by(id: params[:id])
+    @post = Post.find_by(:id => params[:id])
     if @post.user_id != current_user.id
       redirect_to("/posts/index")
       flash[:alert] = "権限がありません"
@@ -70,7 +70,7 @@ class PostsController < ApplicationController
   end
 
   def set_post
-    @post = Post.find_by(id: params[:id])
+    @post = Post.find_by(:id => params[:id])
   end
 end
 

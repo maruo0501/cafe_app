@@ -22,13 +22,13 @@ Rails.application.routes.draw do
     :sessions => 'users/sessions',
    }
   devise_scope :user do
-    post 'users/guest_sign_in', to: 'users/sessions#new_guest'
+    post 'users/guest_sign_in', :to => 'users/sessions#new_guest'
   end
   get "/mypage" => "users#mypage"
   
   resources :posts do
-    resource :favorites, only: [:create, :destroy]
-    resources :comments, only: [:create, :destroy]
+    resource :favorites, :only => [:create, :destroy]
+    resources :comments, :only => [:create, :destroy]
   end
-  resources :users, only: [:show, :edit, :update]
+  resources :users, :only => [:show, :edit, :update]
 end

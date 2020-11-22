@@ -1,0 +1,21 @@
+inherit_from: .rubocop_todo.yml
+AllCops:
+  Exclude:
+    - "config/environments/*"
+    - "vender/**/*"
+    - "bin/**"
+    - "db/**/*"
+    - "tmp/**/*"
+    - "lib/**/*"
+    - "Gemfile"
+    - "node_modules/node-sass/src/**/*"
+
+Style/HashEachMethods:   
+  Enabled: true
+Style/HashTransformKeys:
+  Enabled: true
+Style/HashTransformValues:
+  Enabled: true
+
+Style/AsciiComments:
+  Enabled: false
