@@ -44,6 +44,7 @@ wifiがあり、かつ長時間作業可能なお気に入りのカフェを見�
 - Rubocop設定
 - Issueやプルリクを活用したGitHubフロー
 - SSL化
+- N+1問題
 
 ## サービスの機能一覧
 - 投稿一覧、詳細機能
@@ -72,5 +73,6 @@ wifiがあり、かつ長時間作業可能なお気に入りのカフェを見�
 - Kaminari
 - Fog::Aws
 - Capybara
+- Bullet
 
 
