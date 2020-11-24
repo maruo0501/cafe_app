@@ -4,7 +4,9 @@ class HomesController < ApplicationController
   end
 
   def post_index
-    @posts = Post.page(params[:page]).per(6).order(:created_at => :desc)
+    @posts = Post.includes([:user]).page(params[:page]).per(6).order(:created_at => :desc) # 編集後
   end
 end
+
+
 

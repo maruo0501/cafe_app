@@ -1,5 +1,12 @@
 Rails.application.configure do
-  # Settings specified here will take precedence over those in config/application.rb.
+  config.after_initialize do
+    Bullet.enable = true # Bulletを有効化
+    Bullet.alert = true # JavaScriptのポップアップアラートを有効化
+    Bullet.bullet_logger = true # Rails.root/log/bullet.logに出力
+    Bullet.console = true # ブラウザのconsole.logに出力
+    Bullet.rails_logger = true # Railsのログに結果を出力
+    Bullet.add_footer = true # ページの左下に結果を表示
+  end
 
   # In the development environment your application's code is reloaded on
   # every request. This slows down response time but is perfect for development
