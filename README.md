@@ -26,7 +26,7 @@ wifiがあり、かつ長時間作業可能なお気に入りのカフェを見�
 - Ruby2.7.0
 - Ruby on Rails6.0.3
 - RSpec
-- MySQL8.0.21
+- MySQL8.0
 ### フロントエンド
 - HTML / CSS
 - JavaScript / jQuery
