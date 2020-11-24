@@ -8,11 +8,11 @@ class UsersController < ApplicationController
   end
 
   def favorites
-    @favorite_posts = @user.favorite_posts
+    @favorite_posts = @user.favorite_posts.includes([:user])
   end
 
   def comments
-    @comment_posts = @user.comment_posts
+    @comment_posts = @user.comment_posts.includes([:user])
   end
 
   private

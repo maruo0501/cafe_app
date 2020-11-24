@@ -4,12 +4,12 @@ class PostsController < ApplicationController
   before_action :set_post, :only => [:show, :edit, :update, :destroy]
 
   def index
-    @posts = Post.page(params[:page]).per(6).order(:created_at => :desc)
+    @posts = Post.includes([:user]).page(params[:page]).per(6).order(:created_at => :desc) # 編集後
   end
 
   def show
     @user = @post.user
-    @comments = @post.comments
+    @comments = @post.comments.includes([:user]) # 編集後
     @comment = @post.comments.build
   end
 

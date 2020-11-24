@@ -47,6 +47,8 @@ group :development, :test do
   gem 'factory_bot_rails'
   # 追記
   gem 'rails-controller-testing'
+  # N＋1問題検出
+  gem 'bullet'
 end
 
 group :development do
