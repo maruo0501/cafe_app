@@ -8,7 +8,7 @@ Ruby on Rails(ver. 6.0.3)を用いて、岡山のノマドカフェを共有す�
 https://oshicafe.com/
 
 ## ER図
-![Uploading スクリーンショット 2020-11-25 20.16.19.png…]()
+<img width="462" alt="スクリーンショット 2020-11-25 20 16 19" src="https://user-images.githubusercontent.com/55953263/100220737-1bced000-2f5b-11eb-8213-d5ed570fbf82.png">
 
 ## サービス概要
 - 岡山のノマドカフェを共有する投稿サイトです。
