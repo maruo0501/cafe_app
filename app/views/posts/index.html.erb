@@ -3,60 +3,62 @@
 <div class="container py-5">
   <div class="row -eq-height">
     <% @posts.each do |post| %>
-      <div class="col-md-4 mb-5">
-        <div class="card h-100">
-          <!-- 画像からも詳細ページに飛べる -->
-          <div class="card-image">
-            <% if post.image.present? %>
-              <%= link_to image_tag(post.image_url, class: 'img-fluid'), "/posts/#{post.id}" %>
-            <% else %>
-              <%= link_to image_tag('default.png', class: 'img-fluid'), "/posts/#{post.id}" %>
-            <% end %>
-          </div>
-          <div class="card-body">
-            <h5 class="card-title"><%= link_to(post.store_name, "/posts/#{post.id}") %></h5>
-            <h6 class="card-subtitle mb-2 text-muted">
-              <% if post.wifi == "yes" %>
-                <i class="fas fa-wifi"></i>
+      <% if post.user %>
+        <div class="col-md-4 mb-5">
+          <div class="card h-100">
+            <!-- 画像からも詳細ページに飛べる -->
+            <div class="card-image">
+              <% if post.image.present? %>
+                <%= link_to image_tag(post.image_url, class: 'img-fluid'), "/posts/#{post.id}" %>
+              <% else %>
+                <%= link_to image_tag('default.png', class: 'img-fluid'), "/posts/#{post.id}" %>
               <% end %>
-              <% if post.power == "yes" %>
-                <i class="fas fa-plug"></i>
-              <% end %>
-              <% if post.creditcard == "yes" %>
-                <i class="far fa-credit-card"></i>
-              <% end %>
-            </h6>
-            <p class="card-text"><%= post.content %></p>
-          </div>
-          <div class="card-footer">
-            <div class="d-flex justify-content-between mx-2 mt-2">
-              <div class="row">
-                <!-- お気に入り数（非同期） -->
-                <div id="favorites_buttons_<%= post.id %>">
-                  <%= render partial: 'favorites/favorite', locals: { post: post} %>
-                </div>
-                <!-- コメント数 -->
-                <p>
-                  <%= link_to("/posts/#{post.id}") do %>
-                    <span><i class="fas fa-comment ml-3" style="color:dodgerblue;"></i></span>
-                  <% end %>
-                  <%= post.comments.count %>
-                </p>
-              </div>
-              <div class="row">
-                <!-- 投稿したユーザーの画像 -->
-                <% if post.user.picture.present? %>
-                  <img src=<%= post.user.picture %> class="rounded-circle mr-1">
-                <% else %>
-                  <i class="fas fa-user-circle fa-2x mr-1"></i>
+            </div>
+            <div class="card-body">
+              <h5 class="card-title"><%= link_to(post.store_name, "/posts/#{post.id}") %></h5>
+              <h6 class="card-subtitle mb-2 text-muted">
+                <% if post.wifi == "yes" %>
+                  <i class="fas fa-wifi"></i>
                 <% end %>
-                <!-- 投稿したユーザー名 -->
-                <%= link_to(post.user.name, "/users/#{post.user.id}") %>
+                <% if post.power == "yes" %>
+                  <i class="fas fa-plug"></i>
+                <% end %>
+                <% if post.creditcard == "yes" %>
+                  <i class="far fa-credit-card"></i>
+                <% end %>
+              </h6>
+              <p class="card-text"><%= post.content %></p>
+            </div>
+            <div class="card-footer">
+              <div class="d-flex justify-content-between mx-2 mt-2">
+                <div class="row">
+                  <!-- お気に入り数（非同期） -->
+                  <div id="favorites_buttons_<%= post.id %>">
+                    <%= render partial: 'favorites/favorite', locals: { post: post} %>
+                  </div>
+                  <!-- コメント数 -->
+                  <p>
+                    <%= link_to("/posts/#{post.id}") do %>
+                      <span><i class="fas fa-comment ml-3" style="color:dodgerblue;"></i></span>
+                    <% end %>
+                    <%= post.comments.count %>
+                  </p>
+                </div>
+                <div class="row">
+                  <!-- 投稿したユーザーの画像 -->
+                  <% if post.user.picture.present? %>
+                    <img src=<%= post.user.picture %> class="rounded-circle mr-1">
+                  <% else %>
+                    <i class="fas fa-user-circle fa-2x mr-1"></i>
+                  <% end %>
+                  <!-- 投稿したユーザー名 -->
+                  <%= link_to(post.user.name, "/users/#{post.user.id}") %>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      <% end %>
     <% end %>
   </div>
   <div class="mx-auto" style="width: 200px;">

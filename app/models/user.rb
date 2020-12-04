@@ -3,11 +3,11 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   # アソシエーション
-  has_many :posts
+  has_many :posts, :dependent => :destroy
   has_many :favorites
-  has_many :favorite_posts, :through => :favorites, :source => :post 
+  has_many :favorite_posts, :through => :favorites, :source => :post
   has_many :comments, :dependent => :destroy
-  has_many :comment_posts, :through => :comments, :source => :post 
+  has_many :comment_posts, :through => :comments, :source => :post
 
   # バリデーション
   before_save { self.email = email.downcase }
