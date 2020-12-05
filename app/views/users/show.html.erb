@@ -17,9 +17,11 @@
     <% if user_signed_in? && @user == current_user %>
       <p><%= @user.email %></p>
       <%= link_to "アカウント編集", edit_user_registration_path %>
-      <div class="destroy-user mt-3">
-        <%= link_to "退会",user_path(current_user.id), class: "destroy-user", method: :delete, "data-confirm" => "本当に退会しますか？" %>
-      </div>
+      <% unless @user.email == "test@example.com" then %>
+        <div class="destroy-user mt-3">
+          <%= link_to "退会",user_path(current_user.id), class: "destroy-user", method: :delete, "data-confirm" => "本当に退会しますか？" %>
+        </div>
+      <% end %>
     <% end %>
   </div>
   <div class="border mb-4" style="padding:3px;">
