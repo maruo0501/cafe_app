@@ -27,7 +27,7 @@ https://xd.adobe.com/view/122096fb-4482-4a82-97bf-5643810493a4-4773/
 - 簡単ログインからの投稿にお気に入り、コメント投稿、コメント削除
 ![sample](https://user-images.githubusercontent.com/55953263/101269318-3140c700-37b1-11eb-911f-1e6910697c8d.gif)
 
-- ログイン後、投稿、編集
+- ログイン後、投稿、編集</br>
 ![sample2](https://user-images.githubusercontent.com/55953263/101270686-c72f1e80-37be-11eb-8a92-68a9254af563.gif)
 
 ## 制作の背景
