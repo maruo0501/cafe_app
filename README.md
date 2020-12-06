@@ -25,6 +25,9 @@ https://xd.adobe.com/view/122096fb-4482-4a82-97bf-5643810493a4-4773/
 
 ![sample](https://user-images.githubusercontent.com/55953263/101269274-b081cb00-37b0-11eb-82e2-2c0f1804b398.gif)
 
+![sample](https://user-images.githubusercontent.com/55953263/101269318-3140c700-37b1-11eb-911f-1e6910697c8d.gif)
+
+
 ## 制作の背景
 夫の転勤に伴い、現在岡山在住。</br>
 引越し当初、プログラミングの勉強のためノマドカフェを探していましたが、</br>
