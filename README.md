@@ -22,9 +22,6 @@ https://xd.adobe.com/view/122096fb-4482-4a82-97bf-5643810493a4-4773/
 - 投稿する際は、wifiや電源の有無、クレジットカードが利用可能かどうかを選択できます。
 - 投稿する際、画像ファイルを選択しない場合は、デフォルト画像が表示されます。
 - 各投稿に付しているマークで、wifiや電源の有無、クレジットカードが利用可能かどうかを確認できます。
-
-![sample](https://user-images.githubusercontent.com/55953263/101269274-b081cb00-37b0-11eb-82e2-2c0f1804b398.gif)
-
 ![sample](https://user-images.githubusercontent.com/55953263/101269318-3140c700-37b1-11eb-911f-1e6910697c8d.gif)
 
 
