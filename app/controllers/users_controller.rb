@@ -9,7 +9,7 @@ class UsersController < ApplicationController
 
   # アカウント退会
   def destroy
-    @user = User.find(params[:id]) #特定のidを持つ情報を取得
+    @user = User.find(params[:id]) 
     @user.destroy
     flash[:notice] = 'ユーザーを削除しました。'
     redirect_to :root #削除に成功すればrootページに戻る
