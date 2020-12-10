@@ -64,6 +64,7 @@ wifiがあり、かつ長時間作業可能なお気に入りのカフェを見�
 - Git
 ### その他、使用技術
 - Bootstrap使用
+- 一部Ajax使用
 - Rubocop設定
 - Issueやプルリクを活用したGitHubフロー
 - SSL化
