@@ -2,10 +2,8 @@ require 'rails_helper'
 
 RSpec.describe 'Users', :type => :system do
   describe 'User CRUD' do
+    let!(:user) { User.create(name: 'maruo', email: 'maruo@example.com', password: 'password') }
     describe 'ログイン前' do
-      let(:user) { create(:user) }
-      let(:other_user) { create(:user) }
-      
       context '簡単ログインでログインできる' do
         it 'アカウント編集へはアクセスできない' do
           visit root_path
@@ -87,14 +85,12 @@ RSpec.describe 'Users', :type => :system do
       end
     end
     describe 'ログイン' do
-      before do
-        @user = User.create!(:name => 'test', :email => 'test@example.com', :password => 'password')
-      end
       context 'フォームの入力値が正常' do
         it 'ユーザーのログインが成功' do
           # ログイン画面へ遷移
           visit new_user_session_path
-          fill_in 'user_email', :with => 'test@example.com'
+          expect(current_path).to eq new_user_session_path
+          fill_in 'user_email', :with => user.email
           fill_in 'user_password', :with => 'password'
           click_button 'ログイン'
           # root_pathへ遷移することを期待する
@@ -122,48 +118,47 @@ RSpec.describe 'Users', :type => :system do
     end
     describe 'ログイン後' do
       before do
-        @user = User.create(:name => 'yamada', :email => 'yamada@example.com', :password => 'password')
-        login_as(@user)
-        visit edit_user_registration_path(@user)
+        login_as(user)
+        visit edit_user_registration_path(user)
       end
       describe 'ユーザー編集' do
         context 'フォームの入力値が正常' do
           it 'ユーザーの編集が成功(ユーザー画像追加)' do
-            expect(current_path).to eq edit_user_registration_path(@user)
+            expect(current_path).to eq edit_user_registration_path(user)
             expect(page).to have_content('アカウント編集')
             # Nameに"yamada"が入力されていることを検証する
-            expect(page).to have_field 'user_name', :with => 'yamada'
+            expect(page).to have_field 'user_name', :with => 'maruo'
             # Emailに"yamada@example.com"が入力されていることを検証する
-            expect(page).to have_field 'user_email', :with => 'yamada@example.com'
+            expect(page).to have_field 'user_email', :with => user.email
             # ユーザー画像追加
             attach_file 'user_picture', "#{Rails.root}/spec/cafe01.jpg"
             fill_in 'user_current_password', :with => 'password'
             fill_in 'user_password', :with => 'password'
             fill_in 'user_password_confirmation', :with => 'password'
             click_button '保　存'
-            expect(current_path).to eq root_path(@user)
+            expect(current_path).to eq root_path(user)
             expect(page).to have_content 'アカウント情報を変更しました。'
           end
           it 'ユーザーの編集が成功(パスワード変更)' do
             # Nameに"test"が入力されていることを検証する
-            expect(page).to have_field 'user_name', :with => 'yamada'
+            expect(page).to have_field 'user_name', :with => 'maruo'
             # Emailに"test@example.com"が入力されていることを検証する
-            expect(page).to have_field 'user_email', :with => 'yamada@example.com'
+            expect(page).to have_field 'user_email', :with => user.email
             fill_in 'user_current_password', :with => 'password'
             fill_in 'user_password', :with => '123456'
             fill_in 'user_password_confirmation', :with => '123456'
             click_button '保　存'
-            expect(current_path).to eq root_path(@user)
+            expect(current_path).to eq root_path(user)
             expect(page).to have_content 'アカウント情報を変更しました。'
           end
         end
         context 'パスワードが一致しない' do
           it 'ユーザーの編集が失敗' do
-            expect(page).to have_field 'user_name', :with => 'yamada'
-            expect(page).to have_field 'user_email', :with => 'yamada@example.com'
+            expect(page).to have_field 'user_name', :with => 'maruo'
+            expect(page).to have_field 'user_email', :with => user.email
             fill_in 'user_current_password', :with => 'password'
             fill_in 'user_password', :with => '123456'
-            fill_in 'user_password_confirmation', :with => '23456'
+            fill_in 'user_password_confirmation', :with => '234567'
             click_button '保　存'
             expect(current_path).to eq '/users'
             expect(page).to have_content "確認用パスワードとパスワードの入力が一致しません"
