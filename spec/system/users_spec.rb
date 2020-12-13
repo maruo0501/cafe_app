@@ -126,9 +126,9 @@ RSpec.describe 'Users', :type => :system do
           it 'ユーザーの編集が成功(ユーザー画像追加)' do
             expect(current_path).to eq edit_user_registration_path(user)
             expect(page).to have_content('アカウント編集')
-            # Nameに"yamada"が入力されていることを検証する
+            # Nameに"maruo"が入力されていることを検証する
             expect(page).to have_field 'user_name', :with => 'maruo'
-            # Emailに"yamada@example.com"が入力されていることを検証する
+            # Emailに"maruo@example.com"が入力されていることを検証する
             expect(page).to have_field 'user_email', :with => user.email
             # ユーザー画像追加
             attach_file 'user_picture', "#{Rails.root}/spec/cafe01.jpg"
@@ -140,7 +140,7 @@ RSpec.describe 'Users', :type => :system do
             expect(page).to have_content 'アカウント情報を変更しました。'
           end
           it 'ユーザーの編集が成功(パスワード変更)' do
-            # Nameに"test"が入力されていることを検証する
+            # Nameに"maruo"が入力されていることを検証する
             expect(page).to have_field 'user_name', :with => 'maruo'
             # Emailに"test@example.com"が入力されていることを検証する
             expect(page).to have_field 'user_email', :with => user.email
