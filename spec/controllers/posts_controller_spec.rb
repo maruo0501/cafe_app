@@ -1,15 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe PostsController, :type => :controller do
-  # before do
-  #   @user = FactoryBot.create(:user)
-  #   @another_user = FactoryBot.create(:another_user)
-  #   @post = @user.posts.create(
-  #       :store_name => "test store",
-  #       :content => "tester",
-  #       :user_id => 1
-  #     ) 
-  # end
   let!(:user) { create(:user) }
   let(:another_user) { create(:another_user) }
   let!(:new_post) { create(:post) }
