@@ -4,7 +4,6 @@ RSpec.describe PostsController, :type => :controller do
   let!(:user) { create(:user) }
   let(:another_user) { create(:another_user) }
   let!(:new_post) { create(:post) }
-  # let(:post) { Post.create(store_name: 'test store', content: "tester", user_id: 1) }
   describe "#index" do
     # 正常なレスポンスか？
     it "responds successfully" do
