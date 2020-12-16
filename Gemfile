@@ -61,6 +61,9 @@ group :development do
   # rubocop導入
   gem 'rubocop', require: false
   gem 'rubocop-rails'
+  # デバッグ
+  gem 'better_errors'
+  gem 'binding_of_caller'
 end
 
 group :test do
