@@ -10,6 +10,7 @@ class Post < ApplicationRecord
   enum :wifi => { :yes => 0, :no => 1 }, :_prefix => true
   enum :power => { :yes => 0, :no => 1 }, :_prefix => true
   enum :creditcard => { :yes => 0, :no => 1 }, :_prefix => true
+  enum :electronic_money => { :yes => 0, :no => 1 }, :_prefix => true
 
   belongs_to :user
   has_many :favorites

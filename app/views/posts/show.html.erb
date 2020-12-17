@@ -19,6 +19,9 @@
           <% if @post.creditcard == "yes" %>
             <i class="far fa-credit-card"></i>クレジットカード利用可
           <% end %>
+          <% if @post.electronic_money == "yes" %>
+            <i class="fab fa-cc-amazon-pay"></i>電子マネー利用可
+          <% end %>
         </h6>
       <p class="card-text"><%= @post.content %></p>
     </div>

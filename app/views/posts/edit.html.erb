@@ -39,6 +39,13 @@
         <%= f.radio_button :creditcard, :no %>
         <%= f.label :creditcard, "不可", {value: :no, style: "display: inline-block;"} %>
       </div>
+      <div class="form-group mb-3">
+        <%= f.label "電子マネーの利用" %><br>
+        <%= f.radio_button :electronic_money, :yes %>
+        <%= f.label :electronic_money, "可", {value: :yes, style: "display: inline-block;"} %>
+        <%= f.radio_button :electronic_money, :no %>
+        <%= f.label :electronic_money, "不可", {value: :no, style: "display: inline-block;"} %>
+      </div>
     　<div class="form-group">
         <%= f.label "おすすめポイント" %><br><%= f.text_area :content, value: @post.content %>
          <% if @post.errors.include?(:content) %>
