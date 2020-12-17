@@ -14,7 +14,7 @@ https://xd.adobe.com/view/122096fb-4482-4a82-97bf-5643810493a4-4773/
 
 ## ER図
 <img width="462" alt="スクリーンショット 2020-11-25 20 16 19" src="https://user-images.githubusercontent.com/55953263/100220737-1bced000-2f5b-11eb-8213-d5ed570fbf82.png">
-https://www.dropbox.com/s/1th696jfth9rde8/%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%83%E3%83%88%202020-12-17%2015.21.39.png?dl=0
+<img width="544" alt="スクリーンショット 2020-12-17 15 22 20" src="https://user-images.githubusercontent.com/55953263/102451471-e14ce480-407b-11eb-93ad-97fe42d5c1f7.png">
 
 ## サービス概要
 - 岡山のノマドカフェを共有する投稿サイトです。
