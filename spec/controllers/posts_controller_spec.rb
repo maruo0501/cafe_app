@@ -122,7 +122,6 @@ RSpec.describe PostsController, :type => :controller do
         sign_in user
         get :edit, :params => { :id => new_post.id }
         # expect(response).to be_successful
-        # expect(response.status).to eq 200
       end
       # 200レスポンスが返ってきているか？
       it "returns a 200 response" do
