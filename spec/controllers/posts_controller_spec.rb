@@ -233,7 +233,7 @@ RSpec.describe PostsController, :type => :controller do
       it "deletes a post" do
         sign_in user
         # expect {
-          # delete :destroy, :params => { :id => new_post.id }
+        #   delete :destroy, :params => { :id => new_post.id }
         # }.to change(user.posts, :count).by(-1)
       end
       # 投稿を削除した後、投稿一覧ページへリダイレクトしているか？
