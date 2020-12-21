@@ -4,19 +4,16 @@ RSpec.describe FavoritesController, :type => :controller do
   describe "POST #create" do
     # ログイン済みのユーザーとして
     context "as an authenticated user" do
-      before do
-        @user = create(:user)
-        @post = create(:post)
-      end
-      it "returns http success" do
-        sign_in @user
-        post :create, :params => { :user_id => @user.id, :post_id => @post.id }
-        expect(response).to have_http_status(:success)
-      end
+      let!(:user) { create(:user) }
+      let!(:new_post) { create(:post) }
       # いいね！が出来ること
       it "creates a favorite" do
-        sign_in @user
-        expect { post :create, :params => { :user_id => @user.id, :post_id => @post.id } }.to change(@user.favorites, :count).by(1)
+        sign_in user
+        # expect { post :create, :params => { :user_id => user.id, :post_id => post.id } }.to change(user.favorites, :count).by(1)
+        # expect (post.save).to change(user.favorites, :count).by(1)
+        # expect {
+        #   post :create, params: { post: new_post }
+        # }.to change(user.favorites, :count).by(1)
       end
     end
     # ログインしてないゲストユーザーとして
