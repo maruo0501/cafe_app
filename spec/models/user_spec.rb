@@ -37,10 +37,10 @@ describe User do
     end
     # email 小文字化のテスト
     it "emailが大文字の場合登録できないこと" do
-      @user = FactoryBot.build(:user)
-      @user.email = "TANAKA@example.com"
-      @user.save!
-      expect(@user.reload.email).to eq "tanaka@example.com"
+      user = FactoryBot.build(:user)
+      user.email = "TANAKA@example.com"
+      user.save!
+      expect(user.reload.email).to eq "tanaka@example.com"
     end
     # email フォーマットのテスト
     context "無効なEメールを登録しようとした場合" do

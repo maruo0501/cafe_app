@@ -1,9 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe PostsController, :type => :controller do
-  let!(:user) { create(:user) }
+  let(:user) { create(:user) }
   let(:another_user) { create(:another_user) }
-  let!(:new_post) { create(:post) }
+  let!(:new_post) { create(:post, :user_id => user.id) }
   describe "#index" do
     # 正常なレスポンスか？
     it "responds successfully" do
@@ -121,13 +121,13 @@ RSpec.describe PostsController, :type => :controller do
       it "responds successfully" do
         sign_in user
         get :edit, :params => { :id => new_post.id }
-        # expect(response).to be_successful
+        expect(response).to be_successful
       end
       # 200レスポンスが返ってきているか？
       it "returns a 200 response" do
         sign_in user
         get :edit, :params => { :id => new_post.id }
-        # expect(response).to have_http_status "200"
+        expect(response).to have_http_status "200"
       end
     end
     context "as an unauthorized user" do
@@ -187,7 +187,7 @@ RSpec.describe PostsController, :type => :controller do
         sign_in user
         post_params = { :store_name => nil }
         patch :update, :params => { :id => new_post.id, :post => post_params }
-        # expect(response).to render_template :edit
+        expect(response).to render_template :edit
       end
     end
     context "as an unauthorized user" do
@@ -232,9 +232,9 @@ RSpec.describe PostsController, :type => :controller do
       # 正常に投稿を削除できるか？
       it "deletes a post" do
         sign_in user
-        # expect {
-        #   delete :destroy, :params => { :id => new_post.id }
-        # }.to change(user.posts, :count).by(-1)
+        expect {
+          delete :destroy, :params => { :id => new_post.id }
+        }.to change(user.posts, :count).by(-1)
       end
       # 投稿を削除した後、投稿一覧ページへリダイレクトしているか？
       it "redirects the page to /posts/index" do
