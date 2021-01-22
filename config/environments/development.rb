@@ -54,6 +54,5 @@ Rails.application.configure do
   # Suppress logger output for asset requests.
   config.assets.quiet = true
 
-  # Use an evented file watcher to asynchronously detect changes in source code,
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 end
